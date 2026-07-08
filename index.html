@@ -79,6 +79,53 @@ body {
 .pstatus.live { background: rgba(18, 184, 118, .16); color: #7FE8C2; border: 1px solid rgba(18, 184, 118, .45); }
 .pstatus.side { background: rgba(233, 241, 236, .08); color: #B9C8C1; border: 1px solid rgba(233, 241, 236, .22); }
 .pstatus.internal { background: rgba(232, 193, 90, .13); color: #F0D089; border: 1px solid rgba(232, 193, 90, .4); }
+
+/* 分层布局：代表作大卡 + 分组标签 */
+.tier-label {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 10px 0 -4px;
+}
+.tier-label::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+.portal.hero {
+  grid-column: 1 / -1;
+  display: flex; align-items: stretch;
+  border-color: rgba(95, 203, 170, .38);
+  box-shadow: 0 24px 60px -34px rgba(95, 203, 170, .35);
+}
+.portal.hero .portal-art {
+  width: 42%; flex-shrink: 0; aspect-ratio: auto;
+  border-bottom: none; border-right: 1px solid var(--hairline);
+}
+.portal.hero .portal-body { flex: 1; padding: 22px 26px 22px; display: flex; flex-direction: column; }
+.portal.hero .portal-title { font-size: 24px; }
+.portal.hero .portal-desc { font-size: 13.5px; max-width: 40em; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 10px 26px; margin: 14px 0 4px; }
+.hero-stats > div b {
+  display: block; font-family: var(--serif); font-size: 25px; font-weight: 600;
+  color: var(--accent); line-height: 1.2; font-variant-numeric: tabular-nums;
+}
+.hero-stats > div span { font-size: 10.5px; color: var(--ink-faint); letter-spacing: .05em; }
+.portal.hero .portal-cta { margin-top: auto; padding-top: 10px; }
+@media (max-width: 700px) {
+  .portal.hero { flex-direction: column; }
+  .portal.hero .portal-art { width: 100%; aspect-ratio: 2 / 1; border-right: none; border-bottom: 1px solid var(--hairline); }
+}
+
+/* 世界内：角色 / 阶段 / 结果 速览条 */
+.w-meta-row {
+  display: flex; flex-wrap: wrap; gap: 8px 26px;
+  margin: 4px 0 14px; padding: 10px 0;
+  border-top: 1px solid rgba(128, 128, 128, .28);
+  border-bottom: 1px solid rgba(128, 128, 128, .28);
+}
+.w-meta-row span { font-size: 12.5px; font-weight: 600; }
+.w-meta-row i {
+  display: block; font-style: normal; font-weight: 400;
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  opacity: .55; margin-bottom: 2px;
+}
 .metric i { font-style: normal; display: block; margin-top: 3px; font-size: 10px; color: var(--ink-faint); letter-spacing: .03em; }
 
 /* 关键决策 / AI 工程 */
@@ -1088,14 +1135,20 @@ footer {
   <p class="section-note" data-en="Each card is a portal — step in and the background, sound and interactions become that product&#39;s world. The phones and the machine room are all fully operable.">每张卡片是一扇传送门——点进去，背景、声音与交互都会变成那个作品的世界。手机和机房，都可以真实操作。</p>
 
   <div class="works-grid" id="works-grid">
-    <button class="portal big" data-world="ws" data-kind="产品" aria-haspopup="dialog">
+    <div class="tier-label" data-en="Shipped &amp; Validated · Real business results">已上架 &amp; 已验证 · 有真实业务结果</div>
+    <button class="portal hero" data-world="ws" data-kind="产品" aria-haspopup="dialog">
       <span class="pstatus live" data-en="LIVE · 4.7★ Both stores">已上架 · 4.7★ 双端</span>
-      <canvas class="portal-art" id="art-ws" width="640" height="320" aria-hidden="true"></canvas>
+      <canvas class="portal-art" id="art-ws" width="640" height="460" aria-hidden="true"></canvas>
       <div class="portal-body">
-        <div class="portal-kind" data-en="Product · New vertical 0→1">产品 · 新垂类 0→1</div>
+        <div class="portal-kind" data-en="Flagship · Product 0→1 · Solo owner">代表作 · 产品 0→1 · 独立 Owner</div>
         <div class="portal-title">WoodSense: Craft &amp; Identifier</div>
-        <p class="portal-desc" data-en="Vertical AI app that identifies wood species and furniture craftsmanship from a photo. Category revenue +2759%.">拍照识别木材与家具工艺的垂类 AI 应用。赛道 Revenue +2759%。</p>
-        <span class="portal-cta" data-en="Enter the wood world">进入木质世界</span>
+        <p class="portal-desc" data-en="A vertical AI app incubated from zero as sole owner: photo-based wood and furniture craftsmanship identification. The Day-0 call — Project-first: AI never answers like an encyclopedia, it advises on the project in your hands. That single decision shaped retention and monetization.">以独立 Owner 从 0 孵化的垂类 AI 应用：拍照识别木材与家具工艺。Day-0 的关键判断——Project-first：AI 不做百科式识别，只给绑定用户手头项目的可执行建议。这一个决策定义了后来的留存与付费结构。</p>
+        <div class="hero-stats">
+          <div><b>+2759%</b><span data-en="Category revenue (Google official)">赛道 Revenue · Google 官方口径</span></div>
+          <div><b>4.7★</b><span data-en="Both app stores">双端应用商店</span></div>
+          <div><b>+10%</b><span data-en="In-house model accuracy (absolute)">自研模型准确率 · 绝对值</span></div>
+        </div>
+        <span class="portal-cta" data-en="Enter the wood world — full playable demo">进入木质世界 · 完整可玩 demo</span>
       </div>
     </button>
     <button class="portal big" data-world="mb" data-kind="产品" aria-haspopup="dialog">
@@ -1108,6 +1161,17 @@ footer {
         <span class="portal-cta" data-en="Enter the manifest world">进入显化世界</span>
       </div>
     </button>
+    <button class="portal big" data-world="ag" data-kind="系统" aria-haspopup="dialog">
+      <span class="pstatus internal" data-en="INTERNAL SYSTEM · Validated">内部系统 · 已上线验证</span>
+      <canvas class="portal-art" id="art-ag" width="640" height="320" aria-hidden="true"></canvas>
+      <div class="portal-body">
+        <div class="portal-kind" data-en="System · Multi-agent pipeline">系统 · 多 Agent 管线</div>
+        <div class="portal-title" data-en="Agent Growth Engine">Agent 增长引擎</div>
+        <p class="portal-desc" data-en="Signal → creative → landing → feedback, fully closed-loop. Became the #1 ad-spend source, acquisition efficiency +100%.">热点信号 → 创意 → 承接 → 反馈的自动闭环。上线后成为第一大投放消耗来源，获新效率 +100%。</p>
+        <span class="portal-cta" data-en="Enter the machine room">进入机房</span>
+      </div>
+    </button>
+    <div class="tier-label" data-en="Personal Experiments · Solo-built product explorations">个人实验 · 独立开发的产品探索</div>
     <button class="portal big" data-world="pl" data-kind="产品" aria-haspopup="dialog">
       <span class="pstatus side" data-en="SIDE PROJECT · Unreleased">个人开发 · 未上架</span>
       <canvas class="portal-art" id="art-pl" width="640" height="320" aria-hidden="true"></canvas>
@@ -1126,16 +1190,6 @@ footer {
         <div class="portal-title">薛定谔的喵 · Schrödinger's Meow</div>
         <p class="portal-desc" data-en="Adopt a cat that lives in a box — every conversation is an &#39;observation&#39;. A companion for making peace with uncertainty.">领养一只盒子里的小猫，每次对话都是一次「观测」——和年轻人聊聊不确定性。</p>
         <span class="portal-cta" data-en="Open the box">打开盒子</span>
-      </div>
-    </button>
-    <button class="portal big" data-world="ag" data-kind="系统" aria-haspopup="dialog">
-      <span class="pstatus internal" data-en="INTERNAL SYSTEM · Validated">内部系统 · 已上线验证</span>
-      <canvas class="portal-art" id="art-ag" width="640" height="320" aria-hidden="true"></canvas>
-      <div class="portal-body">
-        <div class="portal-kind" data-en="System · Multi-agent pipeline">系统 · 多 Agent 管线</div>
-        <div class="portal-title" data-en="Agent Growth Engine">Agent 增长引擎</div>
-        <p class="portal-desc" data-en="An automated loop of signal → creative → in-app landing → feedback: ad creative production turned from inspiration into a pipeline.">热点信号 → 创意 → App 承接 → 反馈迭代的自动闭环：素材获客从灵感驱动变成流水线。</p>
-        <span class="portal-cta" data-en="Enter the machine room">进入机房</span>
       </div>
     </button>
   </div>
@@ -1214,6 +1268,11 @@ footer {
         <div class="w-eyebrow" data-en="Product · New vertical 0→1 · Glority">产品 · 新垂类 0→1 · Glority</div>
         <h3 class="w-title">WoodSense</h3>
         <div class="w-sub">Create · Identify · Restore</div>
+        <div class="w-meta-row">
+          <span data-en="<i>Role</i>Sole owner · 0→1"><i>角色</i>独立 Owner · 0→1</span>
+          <span data-en="<i>Stage</i>Live on both stores"><i>阶段</i>已上架 · 双端</span>
+          <span data-en="<i>Key result</i>Category revenue +2759%"><i>核心结果</i>赛道 Revenue +2759%</span>
+        </div>
         <p data-en="Snap a photo and AI identifies the wood species and grain, reads the furniture craftsmanship and era (dovetail, mortise-and-tenon, mid-century) with a value estimate; built-in step-by-step restoration guides and a project library (cut lists / joinery dimensions / finishes) — a vertical AI app for woodworkers and furniture restorers.">拍一张照片，AI 识别木材种类与纹理、判断家具工艺与年代（燕尾榫、榫卯、中古风格）并给出参考估值；内置分步修复指南与木工项目库（切割清单 / 榫接尺寸 / 涂装方案）——面向木工爱好者与家具修复者的垂类 AI 应用。</p>
         <p class="w-key" data-en="<b>Key decision:</b> Project-first from Day 0 — AI output is never an encyclopedia answer of &#39;what wood is this&#39;, but actionable guidance bound to the project in the user&#39;s hands. This single call shaped both retention and monetization."><b>关键决策：</b>Day-0 就定 Project-first——AI 输出不做百科式识别，而是绑定用户手头的项目给可执行建议。这一个判断决定了后来的留存与付费结构。</p>
         <p class="w-ai" data-en="<b>AI engineering:</b> shipped the first in-house recognition model with the algo team within one month (+10% absolute accuracy); confidence scores are exposed to users to build trust."><b>AI 工程：</b>配合算法团队一个月内上线第一版自研识别模型（准确率绝对值 +10%）；识别置信度直接暴露给用户以建立信任。</p>
@@ -1252,6 +1311,11 @@ footer {
         <div class="w-eyebrow" data-en="Product · AI Music × Wellness">产品 · AI 音乐 × Wellness</div>
         <h3 class="w-title">ManiBeat</h3>
         <div class="w-sub">Wish · Frequency · Music</div>
+        <div class="w-meta-row">
+          <span data-en="<i>Role</i>Solo incubation"><i>角色</i>独立孵化</span>
+          <span data-en="<i>Stage</i>Live · iOS / visionOS"><i>阶段</i>已上架 · iOS / visionOS</span>
+          <span data-en="<i>Core mechanic</i>Wish-bound daily ritual"><i>核心机制</i>愿望绑定的每日仪式</span>
+        </div>
         <p data-en="Where Gen-Z&#39;s manifestation culture meets AI music generation: write your intention, pick a healing frequency (432Hz / 528Hz / Theta…), duration and style (Ambient / Lo-Fi / Orchestral), and AI composes a track around that wish — turning generic AI music into a <b>daily manifestation ritual</b>.">把年轻人的「显化 manifestation」情绪需求与 AI 音乐生成结合：写下你的意图，选择疗愈频率（432Hz / 528Hz / Theta…）、时长与风格（Ambient / Lo-Fi / Orchestral），AI 生成围绕这个愿望的专属音轨——把泛化的 AI 音乐落成<b>每日显化仪式</b>。</p>
         <p class="w-key" data-en="<b>Key decision:</b> don&#39;t build a generic AI music generator — bind every generation to one wish. The same intention sounds fresh every day, turning novelty into ritual, and ritual into retention."><b>关键决策：</b>不做泛化的 AI 音乐生成器——把每次生成绑定在「一个愿望」上。同一意图每天常听常新，novelty 变成仪式，仪式变成留存。</p>
         <p class="w-ai" data-en="<b>AI engineering:</b> generation is parameterized by fixed contracts (frequency / duration / style), producing controllable randomness — same wish, different track, consistent identity."><b>AI 工程：</b>生成走固定参数契约（频率 / 时长 / 风格），实现可控随机——同一愿望、不同音轨、一致气质。</p>
@@ -1289,6 +1353,11 @@ footer {
         <div class="w-eyebrow" data-en="Product · Personal build">产品 · 个人独立开发</div>
         <h3 class="w-title">Polaris</h3>
         <div class="w-sub">Daily Feed × Explore</div>
+        <div class="w-meta-row">
+          <span data-en="<i>Role</i>Solo · product + front-end"><i>角色</i>个人全栈 · 产品 + 前端</span>
+          <span data-en="<i>Stage</i>Interactive prototype"><i>阶段</i>可交互原型</span>
+          <span data-en="<i>Core idea</i>Dual engine + PGC loop"><i>核心亮点</i>双引擎 + PGC 闭环</span>
+        </div>
         <p data-en="<b>Core thesis:</b> learning tools lose users because &#39;what should I learn today&#39; is always thrown back at the learner. Polaris takes it over — the <b>Daily Feed</b> plans each day from the forgetting curve and past-question decomposition, every card stating &#39;why this one&#39;; <b>Explore</b> breaks any topic into a level path, the way Blinkist breaks down books."><b>核心命题：</b>学习工具的留存困境，在于「今天该学什么」永远被丢回给用户。Polaris 让产品接管这个问题——<b>今日 Feed</b> 用遗忘曲线与原题拆解生成每日计划，每张卡片都写明「为什么是它」；<b>探索</b>把任何主题拆成关卡路径，像 Blinkist 拆书一样拆解一切要学的东西。</p>
         <p class="w-key" data-en="<b>Key decision:</b> automation must earn trust before it takes over — every recommendation exposes its reason (mastery slipping / you failed this variant last week). Reasons first, autopilot second."><b>关键决策：</b>自动化接管之前先赢得信任——每张推荐卡都暴露理由（掌握度滑落 / 上周你在变式题栽过）。先讲理由，再谈托管。</p>
         <p class="w-ai" data-en="<b>AI engineering:</b> models split by cost — light models for extraction / outlining, strong models for learner-facing composition; schema-enforced structured outputs; mastery modeled with SM-2 stability + forgetting curve, updated only on real answers."><b>AI 工程：</b>多模型按成本分工——抽取 / 大纲用轻模型，面向学习者的编排生成用强模型；输出用 schema 强约束；掌握度用 SM-2 稳定性 + 遗忘曲线建模，只在真实作答后更新。</p>
@@ -1326,6 +1395,11 @@ footer {
         <div class="w-eyebrow" data-en="Product · Personal build · Emotional wellness">产品 · 个人独立开发 · 情绪疗愈</div>
         <h3 class="w-title" data-en="Schrödinger's Meow">薛定谔的喵</h3>
         <div class="w-sub" data-en="Observe Your Cat · Befriend Uncertainty">Schrödinger's Meow · Observe Your Cat</div>
+        <div class="w-meta-row">
+          <span data-en="<i>Role</i>Solo · concept to build"><i>角色</i>个人全栈 · 概念到实现</span>
+          <span data-en="<i>Stage</i>Interactive prototype"><i>阶段</i>可交互原型</span>
+          <span data-en="<i>Core idea</i>Observation × assessment leveling"><i>核心亮点</i>观测隐喻 × 评估养成</span>
+        </div>
         <p data-en="A mood-healing app that helps young people make peace with <b>uncertainty</b>, built on Schrödinger&#39;s cat: adopt a cat that lives in a box as your observation target — before you observe, anything could be happening in its day. Every conversation is an observation: the cat replies with a whimsical photo proving what it was doing, then voice-chats with you about the weather inside your head and everything still up in the air.">一个帮年轻人与「不确定性」和解的心情疗愈 app。借薛定谔的猫的概念：领养一只住在盒子里的小猫作为你的<b>观测对象</b>——在你观测之前，它的一天什么都可能发生；每次发起对话都是一次观测，小猫会回你一张天马行空的照片证明它正在干什么，再用语聊陪你聊聊今天心里的天气、那些悬而未决的事。</p>
         <p class="w-key" data-en="<b>Key decision:</b> refuse the &#39;meditation homework&#39; framing — turn coping-with-uncertainty into playful micro-interactions (observe, photo, chat), so self-care feels like feeding a cat, not doing therapy."><b>关键决策：</b>拒绝把它做成「冥想式功课」——用观测隐喻把与不确定共处拆成一次次轻交互（观测、照片、聊天），让自我关怀像喂猫，而不像治疗。</p>
         <p class="w-ai" data-en="<b>AI engineering:</b> photos via image generation, companionship via LLM voice-chat; psychological assessment is an accumulating tag system built turn by turn from conversations — never a one-shot questionnaire."><b>AI 工程：</b>照片走图像生成、陪伴走 LLM 语聊；心理评估做成随对话逐轮累积的标签体系，而非一次性问卷。</p>
@@ -1363,6 +1437,11 @@ footer {
         <div class="w-eyebrow" data-en="System · Multi-agent pipeline · Glority">系统 · 多 Agent 管线 · Glority</div>
         <h3 class="w-title" data-en="Agent Growth Engine">Agent 增长引擎</h3>
         <div class="w-sub">Signal → Creative → Product → Feedback</div>
+        <div class="w-meta-row">
+          <span data-en="<i>Role</i>Built solo"><i>角色</i>独立搭建</span>
+          <span data-en="<i>Stage</i>Live &amp; validated"><i>阶段</i>已上线验证</span>
+          <span data-en="<i>Key result</i>#1 spend source · +100% efficiency"><i>核心结果</i>第一大投放来源 · 获新 +100%</span>
+        </div>
         <p data-en="Ad-creative acquisition suffers from <b>slow iteration and inspiration dependence</b>. The multi-agent pipeline I built solo turns it into a closed-loop assembly line: the <b>Signal agent</b> scans platform trends; the <b>Creative agent</b> translates signals into ad scripts with predicted performance; the <b>Landing agent</b> keeps the app&#39;s first screen and deep links in sync with each creative; the <b>Feedback agent</b> reads campaign data, locates weaknesses and auto-triggers the next round — humans judge only at key checkpoints.">素材获客的老毛病是<b>迭代慢、靠灵感</b>。我独立搭建的多 Agent 管线把它变成一条自动闭环流水线：<b>信号 Agent</b> 持续扫描平台趋势与用户讨论；<b>创意 Agent</b> 把信号翻译成素材脚本并预估表现；<b>承接 Agent</b> 让 App 首屏与深链跟着素材同步变化；<b>反馈 Agent</b> 读投放数据、定位弱点，自动发起下一轮迭代——人只在关键节点做判断。</p>
         <p class="w-key" data-en="<b>Key decision:</b> when feedback misses target, the diagnosis flows back into the creative layer automatically and reruns — it never lands back on a human&#39;s to-do list. Only a true closed loop compresses iteration cycles."><b>关键决策：</b>反馈不达标时，诊断自动回流创意层重跑——而不是回到人的待办清单。只有真闭环才能压缩迭代周期。</p>
         <p class="w-ai" data-en="<b>AI engineering:</b> each agent speaks a fixed JSON contract so the pipeline composes; the Feedback agent&#39;s pass/fail thresholds are calibrated on historical campaign data."><b>AI 工程：</b>每个 Agent 用固定 JSON 契约串联管线；反馈 Agent 的判定阈值由历史投放数据校准。</p>
