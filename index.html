@@ -652,19 +652,31 @@ footer {
 #world-pl .w-hint { color: #6D74A8; }
 #world-pl .w-note { font-size: 11px; color: #6D74A8; margin-top: 12px; }
 
-/* —— Polaris 手机（Blinkist 风：暖奶油 · 深海军蓝 · 招牌绿） —— */
+/* —— Polaris 手机（langflix 风：浅灰底 · 白卡 · 橙主色 · 大黑标题） —— */
 .phone.pl {
-  --card: #FFFFFF; --cover: #F1EBDD; --hairline: #E9E1D0;
-  --ink: #0B3140; --ink-soft: #56707C; --ink-faint: #93A5AD;
-  --accent: #12B876; --accent-soft: rgba(18, 184, 118, .12); --bg: #F8F4EC;
+  --card: #FFFFFF; --cover: #F0F1F4; --hairline: #E8EAEE;
+  --ink: #17181C; --ink-soft: #5E626B; --ink-faint: #9AA0AA;
+  --accent: #ED6B3C; --accent-soft: rgba(237, 107, 60, .1); --bg: #F2F3F6;
 }
+.pl-streak {
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+  background: var(--card); border-radius: 14px; padding: 8px 12px;
+  font-size: 10px; color: var(--ink-faint);
+  box-shadow: 0 6px 16px -12px rgba(23, 24, 28, .25);
+}
+.pl-streak b { font-size: 11px; color: var(--ink); margin-right: auto; }
+.pl-streak span {
+  width: 21px; height: 21px; border-radius: 50%; background: var(--cover);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.pl-streak span.on { background: var(--accent); color: #fff; font-weight: 700; }
 .phone.pl .phone-screen { background: var(--bg); }
 .phone.pl .ps-status .isl { background: #0B3140; }
 .phone.pl .pl-head { border-bottom: none; padding-bottom: 3px; }
 .phone.pl .pl-head b { font-family: var(--sans); font-weight: 800; font-size: 16px; letter-spacing: 0; }
 .phone.pl .pl-card {
   border-radius: 16px; border-color: transparent;
-  box-shadow: 0 8px 22px -14px rgba(11, 49, 64, .3);
+  box-shadow: 0 8px 22px -14px rgba(23, 24, 28, .22);
 }
 .phone.pl .pl-card h5 { font-weight: 750; font-size: 13px; }
 .phone.pl .pl-btn { font-weight: 750; }
@@ -672,7 +684,7 @@ footer {
 .bk-reason {
   display: inline-block; margin-top: 5px;
   font-size: 9px; font-weight: 700; letter-spacing: .02em;
-  color: #0E8F5C; background: var(--accent-soft);
+  color: #D2551F; background: var(--accent-soft);
   border-radius: 100px; padding: 2.5px 10px;
 }
 .spark { display: block; width: 100%; height: 42px; margin-top: 7px; }
@@ -717,42 +729,46 @@ footer {
 }
 .bk-follow:active { transform: scale(.94); }
 
-/* —— Duolingo 式路径 —— */
+/* —— langflix 式课程路线图 —— */
 .duo-unit {
-  background: var(--accent); color: #fff; border-radius: 16px; padding: 11px 15px;
-  font-weight: 800; font-size: 13px; letter-spacing: .04em; flex-shrink: 0;
-  box-shadow: 0 4px 0 #0E9A62;
+  background: var(--card); color: var(--ink); border-radius: 18px; padding: 13px 15px;
+  flex-shrink: 0; border: 1px solid var(--hairline);
+  box-shadow: 0 10px 24px -18px rgba(23, 24, 28, .3);
 }
-.duo-unit small { display: block; font-weight: 600; font-size: 9px; opacity: .85; letter-spacing: .02em; margin-top: 2px; }
+.duo-unit .du-t { font-size: 14.5px; font-weight: 800; }
+.duo-unit .du-t span { display: block; font-weight: 600; font-size: 9px; color: var(--ink-faint); letter-spacing: .04em; margin-top: 2px; }
+.du-prog { display: flex; align-items: center; gap: 8px; margin-top: 9px; }
+.du-prog .pp-track { flex: 1; height: 7px; }
+.du-prog b { font-size: 10.5px; color: var(--accent); font-variant-numeric: tabular-nums; }
 .duo-path { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 14px 0 10px; }
 .duo-wrap { position: relative; display: flex; flex-direction: column; align-items: center; }
 .duo-node {
   width: 62px; height: 62px; border-radius: 50%; border: none; cursor: pointer;
-  font-size: 22px; font-weight: 800; color: #fff;
-  background: var(--accent); box-shadow: 0 6px 0 #0E9A62;
+  font-size: 21px; font-weight: 800; color: #fff;
+  background: #58C16B; box-shadow: 0 6px 0 #3F9B50;
   transition: transform .1s;
 }
-.duo-node:active { transform: translateY(4px); box-shadow: 0 2px 0 #0E9A62; }
-.duo-node.cur { background: #FFC800; box-shadow: 0 6px 0 #E09600; }
-.duo-node.cur:active { box-shadow: 0 2px 0 #E09600; }
-.duo-node.lock { background: #E9E1D0; box-shadow: 0 6px 0 #CFC6B2; color: #B0A791; font-size: 17px; }
-.duo-node.lock:active { box-shadow: 0 2px 0 #CFC6B2; }
+.duo-node:active { transform: translateY(4px); box-shadow: 0 2px 0 #3F9B50; }
+.duo-node.cur { background: var(--accent); box-shadow: 0 6px 0 #C94F24; }
+.duo-node.cur:active { box-shadow: 0 2px 0 #C94F24; }
+.duo-node.lock { background: #E4E7EC; box-shadow: 0 6px 0 #C9CED8; color: #A6ADB8; font-size: 17px; }
+.duo-node.lock:active { box-shadow: 0 2px 0 #C9CED8; }
 @media (prefers-reduced-motion: no-preference) {
   .duo-node.cur { animation: duoGlow 2s ease-in-out infinite; }
   @keyframes duoGlow {
-    0%, 100% { filter: drop-shadow(0 0 0 rgba(255, 200, 0, 0)); }
-    50% { filter: drop-shadow(0 0 12px rgba(255, 200, 0, .65)); }
+    0%, 100% { filter: drop-shadow(0 0 0 rgba(237, 107, 60, 0)); }
+    50% { filter: drop-shadow(0 0 12px rgba(237, 107, 60, .6)); }
   }
 }
 .duo-start {
   position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
-  background: #fff; color: #E09600; font-weight: 800; font-size: 10.5px; letter-spacing: .12em;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 10.5px; letter-spacing: .12em;
   padding: 4px 13px; border-radius: 10px; white-space: nowrap; z-index: 2;
-  box-shadow: 0 4px 10px rgba(11, 49, 64, .2);
+  box-shadow: 0 4px 10px rgba(237, 107, 60, .4);
 }
 .duo-start::after {
   content: ""; position: absolute; left: 50%; bottom: -4px;
-  width: 8px; height: 8px; background: #fff; transform: translateX(-50%) rotate(45deg);
+  width: 8px; height: 8px; background: var(--accent); transform: translateX(-50%) rotate(45deg);
 }
 @media (prefers-reduced-motion: no-preference) {
   .duo-start { animation: duoBounce 1.4s ease-in-out infinite; }
@@ -782,21 +798,21 @@ footer {
   background: var(--card); border: 2px solid var(--hairline); border-bottom-width: 4px;
 }
 .duo-opt:active { transform: translateY(2px); border-bottom-width: 2px; }
-.duo-opt.right { border-color: #12B876; background: rgba(18, 184, 118, .1); color: #0E8F5C; }
+.duo-opt.right { border-color: #58C16B; background: rgba(88, 193, 107, .12); color: #2E8B3D; }
 .duo-opt.wrong { border-color: #F0938A; background: rgba(240, 138, 128, .12); color: #C0554A; }
 .les-feed { border-radius: 14px; padding: 10px 13px; font-size: 11.5px; font-weight: 700; line-height: 1.6; }
-.les-feed.good { background: rgba(18, 184, 118, .14); color: #0E8F5C; }
+.les-feed.good { background: rgba(88, 193, 107, .14); color: #2E8B3D; }
 .les-feed.bad { background: rgba(240, 138, 128, .16); color: #C0554A; }
 .les-cta {
   margin-top: auto; flex-shrink: 0; font: inherit; font-weight: 800; font-size: 13px; letter-spacing: .06em;
   border: none; border-radius: 16px; padding: 13px 0; cursor: pointer;
-  background: var(--accent); color: #fff; box-shadow: 0 4px 0 #0E9A62;
+  background: var(--accent); color: #fff; box-shadow: 0 4px 0 #C94F24;
 }
-.les-cta:active { transform: translateY(3px); box-shadow: 0 1px 0 #0E9A62; }
-.les-cta:disabled { background: #E9E1D0; box-shadow: 0 4px 0 #CFC6B2; color: #B0A791; cursor: default; }
+.les-cta:active { transform: translateY(3px); box-shadow: 0 1px 0 #C94F24; }
+.les-cta:disabled { background: #E4E7EC; box-shadow: 0 4px 0 #C9CED8; color: #A6ADB8; cursor: default; }
 .reward { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; text-align: center; }
 .reward .big { font-size: 52px; }
-.reward .xp { font-size: 22px; font-weight: 800; color: #E09600; font-variant-numeric: tabular-nums; }
+.reward .xp { font-size: 22px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
 .pl-head {
   display: flex; justify-content: space-between; align-items: center;
   padding: 8px 14px 7px; border-bottom: 1px solid var(--hairline); flex-shrink: 0;
@@ -3069,7 +3085,7 @@ footer {
     var pad = 6, nowX = w * 0.6;
     function Y(r) { return pad + (1 - r) * (h - pad * 2); }
     // 已发生的遗忘：92% → 62%
-    c.strokeStyle = "#5B7280"; c.lineWidth = 2; c.lineCap = "round";
+    c.strokeStyle = "#9AA0AA"; c.lineWidth = 2; c.lineCap = "round";
     c.beginPath();
     for (var x = pad; x <= nowX; x += 4) {
       var p = (x - pad) / (nowX - pad);
@@ -3079,14 +3095,14 @@ footer {
     c.stroke();
     if (done) {
       // 复习后的回弹
-      c.strokeStyle = "#12B876";
+      c.strokeStyle = "#58C16B";
       c.beginPath();
       c.moveTo(nowX, Y(0.62));
       c.quadraticCurveTo(nowX + (w - nowX) * 0.25, Y(0.9), w - pad, Y(0.88));
       c.stroke();
     } else {
       // 若不复习的预测
-      c.strokeStyle = "#C9BFA9";
+      c.strokeStyle = "#C9CED8";
       c.setLineDash([3, 4]);
       c.beginPath();
       c.moveTo(nowX, Y(0.62));
@@ -3095,9 +3111,9 @@ footer {
       c.setLineDash([]);
     }
     // 「现在」节点
-    c.fillStyle = "#12B876";
+    c.fillStyle = "#ED6B3C";
     c.beginPath(); c.arc(nowX, Y(0.62), 3.5, 0, 6.29); c.fill();
-    c.fillStyle = "#93A5AD";
+    c.fillStyle = "#9AA0AA";
     c.font = "9px -apple-system, PingFang SC, sans-serif";
     c.textAlign = "center";
     c.fillText(done ? "复习后 ↑" : "现在 62%", nowX, h - 1);
@@ -3172,8 +3188,14 @@ footer {
         '<button class="pl-btn ghost" id="pl-tomorrow">预览明日 Feed</button></div>';
     }
 
+    var days = ["一", "二", "三", "四", "五", "六", "日"];
+    var litDays = plState.celebrated ? 3 : 2;
+    var streakBar = '<div class="pl-streak"><b>🔥 连胜 ' + plState.streak + ' 天</b>' +
+      days.map(function (d, i) {
+        return '<span class="' + (i < litDays ? "on" : "") + '">' + (i < litDays ? "✓" : d) + '</span>';
+      }).join("") + '</div>';
     plScreen.innerHTML = plHeadHtml("早上好 👋", "解剖学期中 · D-12 · 已为你排好") +
-      '<div class="ps-body" style="gap:9px">' + reviewCard + quizCard + planCard + '</div>' +
+      '<div class="ps-body" style="gap:9px">' + streakBar + reviewCard + quizCard + planCard + '</div>' +
       plTabsHtml();
     plBindTabs();
     var sp = document.getElementById("pl-spark");
@@ -3253,7 +3275,7 @@ footer {
     var offs = [-56, 0, 56, 0, -56];
     var nodesHtml = PL_NODES.map(function (n, i) {
       var st = i < plState.node ? "done" : (i === plState.node ? "cur" : "lock");
-      var icon = st === "done" ? "✓" : st === "cur" ? "★" : "🔒";
+      var icon = st === "done" ? "✓" : st === "cur" ? "▶" : "🔒";
       return '<div class="duo-wrap" style="transform:translateX(' + offs[i] + 'px)">' +
         (st === "cur" ? '<span class="duo-start">开始</span>' : "") +
         '<button class="duo-node ' + st + '" data-i="' + i + '" aria-label="' + n + '">' + icon + '</button>' +
@@ -3265,7 +3287,8 @@ footer {
       '<div class="duo-label">结业</div></div>';
     plScreen.innerHTML = plHeadHtml("探索", "任何主题 → 一条路径") +
       '<div class="ps-body" style="gap:11px">' +
-        '<div class="duo-unit">UNIT 1 · 高效学习法<small>先猜 → 揭示 → 命名 → 用到你身上 · 每关 3 分钟</small></div>' +
+        '<div class="duo-unit"><div class="du-t">高效学习法<span>UNIT 1 · 先猜 → 揭示 → 命名 → 用到你身上 · 每关 3 分钟</span></div>' +
+        '<div class="du-prog"><div class="pp-track"><div class="pp-fill" style="width:' + (plState.node / PL_NODES.length * 100) + '%"></div></div><b>课程进度 ' + Math.round(plState.node / PL_NODES.length * 100) + '%</b></div></div>' +
         '<div class="duo-path">' + nodesHtml + '</div>' +
         '<div class="pl-kind" style="margin:0 0 2px">更多路径 · 任何主题都能变成这样一条</div>' +
         '<div class="bk-carousel" id="bk-car"></div>' +
@@ -3387,9 +3410,9 @@ footer {
       var p = Math.min((ts - t0) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
       c.clearRect(0, 0, w, h);
-      c.fillStyle = "#F1EBDD";
+      c.fillStyle = "#F0F1F4";
       c.fillRect(0, 0, w, h);
-      c.fillStyle = "#93A5AD";
+      c.fillStyle = "#9AA0AA";
       c.font = "600 13px -apple-system, PingFang SC, sans-serif";
       c.textAlign = "left";
       c.fillText(cmp.unit, 16, 26);
@@ -3397,14 +3420,14 @@ footer {
         var y = 44 + i * 46;
         var val = cmp.vals[i] * eased;
         var bw = (w - 130) * (val / 100);
-        c.fillStyle = "#56707C";
+        c.fillStyle = "#5E626B";
         c.font = "600 14px -apple-system, PingFang SC, sans-serif";
         c.fillText(lab, 16, y + 20);
-        c.fillStyle = i === 1 ? "#12B876" : "#C9BFA9";
+        c.fillStyle = i === 1 ? "#ED6B3C" : "#D4D8DF";
         c.beginPath();
         c.roundRect ? c.roundRect(86, y, Math.max(4, bw), 28, 14) : c.rect(86, y, Math.max(4, bw), 28);
         c.fill();
-        c.fillStyle = i === 1 ? "#0E8F5C" : "#93A5AD";
+        c.fillStyle = i === 1 ? "#D2551F" : "#9AA0AA";
         c.font = "800 15px -apple-system, PingFang SC, sans-serif";
         c.fillText(Math.round(val) + "%", 92 + Math.max(4, bw), y + 20);
       });
