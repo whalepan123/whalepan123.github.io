@@ -2,7 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="潘静雨 · AI 产品经理 — 沉浸式作品宇宙：五个可交互的产品世界">
+<meta name="description" content="潘静雨 · AI 产品经理 — 沉浸式作品宇宙：五个可交互的产品世界 | Jingyu Pan · AI Product Manager">
+<meta property="og:title" content="潘静雨 · AI 产品经理 | Jingyu Pan">
+<meta property="og:description" content="五个可以走进去的产品世界：WoodSense · ManiBeat · Polaris · Schrödinger's Meow · Agent Growth Engine">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
 <title>潘静雨 · AI 产品经理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +24,8 @@
   --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
 }
 * { box-sizing: border-box; }
-html { color-scheme: dark; }
+html { color-scheme: dark; scroll-behavior: smooth; }
+section { scroll-margin-top: 78px; }
 body {
   margin: 0;
   background:
@@ -38,7 +41,58 @@ body {
   overflow-x: hidden;
 }
 #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-.page { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 84px 28px 110px; }
+.page { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 122px 28px 110px; }
+
+/* ============ 顶部导航 ============ */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 11px 24px;
+  background: rgba(7, 11, 16, .74); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hairline);
+}
+.tn-name { font-family: var(--serif); font-weight: 600; font-size: 15px; letter-spacing: .1em; color: var(--ink); }
+.tn-name:hover { text-decoration: none; color: var(--accent); }
+.tn-links { display: flex; align-items: center; gap: 18px; font-size: 13px; }
+.tn-links > a { color: var(--ink-soft); }
+.tn-links > a:hover { color: var(--accent); text-decoration: none; }
+.tn-btn { border: 1px solid var(--accent); color: var(--accent) !important; border-radius: 100px; padding: 4px 15px; }
+.tn-btn:hover { background: var(--accent-soft); }
+.tn-lang {
+  font: inherit; font-size: 12px; font-weight: 700; letter-spacing: .08em;
+  background: var(--accent); color: #06110D; border: none; border-radius: 100px;
+  padding: 5px 13px; cursor: pointer;
+}
+.tn-lang:active { transform: scale(.95); }
+@media (max-width: 640px) {
+  .topnav { padding: 10px 14px; }
+  .tn-links { gap: 11px; font-size: 12px; }
+  .tn-gh { display: none; }
+}
+
+/* 状态徽章 */
+.pstatus {
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  font-size: 10px; font-weight: 700; letter-spacing: .06em;
+  padding: 3px 11px; border-radius: 100px; backdrop-filter: blur(4px);
+}
+.pstatus.live { background: rgba(18, 184, 118, .16); color: #7FE8C2; border: 1px solid rgba(18, 184, 118, .45); }
+.pstatus.side { background: rgba(233, 241, 236, .08); color: #B9C8C1; border: 1px solid rgba(233, 241, 236, .22); }
+.pstatus.internal { background: rgba(232, 193, 90, .13); color: #F0D089; border: 1px solid rgba(232, 193, 90, .4); }
+.metric i { font-style: normal; display: block; margin-top: 3px; font-size: 10px; color: var(--ink-faint); letter-spacing: .03em; }
+
+/* 关键决策 / AI 工程 */
+.w-key {
+  border-left: 3px solid var(--accent); background: var(--accent-soft);
+  border-radius: 0 12px 12px 0; padding: 9px 13px; margin: 2px 0 12px;
+  font-size: 13px; line-height: 1.85;
+}
+#world-ws .w-key { border-color: #E2A75E; background: rgba(226, 167, 94, .12); }
+#world-mb .w-key { border-color: #B98F6B; background: rgba(185, 143, 107, .14); }
+#world-pl .w-key { border-color: #8E96FF; background: rgba(142, 150, 255, .12); }
+#world-sc .w-key { border-color: #D9A6F2; background: rgba(217, 166, 242, .12); }
+.w-ai { font-size: 12.5px !important; opacity: .92; }
+.agc-note { text-align: center; font-size: 8.5px; letter-spacing: .08em; color: #4E7A6B; padding: 0 0 10px; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible {
@@ -989,136 +1043,157 @@ footer {
 
 <canvas id="stars" aria-hidden="true"></canvas>
 
+<nav class="topnav">
+  <a class="tn-name" href="#">潘静雨</a>
+  <div class="tn-links">
+    <a href="#works-section" data-en="Works">作品</a>
+    <a href="#exp-section" data-en="Experience">经历</a>
+    <a href="#ach-section" data-en="Achievements">成就</a>
+    <a class="tn-gh" href="https://github.com/Arinapan" target="_blank" rel="noopener">GitHub</a>
+    <a class="tn-btn" href="resume.pdf" target="_blank" data-en="Résumé PDF">简历 PDF</a>
+    <button class="tn-lang" id="lang-btn" aria-label="切换语言">EN</button>
+  </div>
+</nav>
+
 <div class="page">
 
 <header class="reveal in">
   <p class="eyebrow">Jingyu Pan · Product Universe</p>
   <div class="name-row">
     <h1>潘静雨</h1>
-    <span class="role">AI 产品经理</span>
+    <span class="role" data-en="AI Product Manager">AI 产品经理</span>
   </div>
-  <p class="tagline">把 AI 从「能力演示」落到<em>「可规模化的业务结果」</em>——每一件作品，都是一个可以走进去的世界。</p>
+  <p class="tagline" data-en="Turning AI from capability demos into <em>scalable business results</em> — every piece of work here is a world you can walk into.">把 AI 从「能力演示」落到<em>「可规模化的业务结果」</em>——每一件作品，都是一个可以走进去的世界。</p>
   <div class="contact">
     <a href="mailto:jingyupan0@gmail.com">jingyupan0@gmail.com</a>
     <span class="divider">·</span>
-    <span>新加坡国立大学 · 同济大学</span>
+    <a href="https://github.com/Arinapan" target="_blank" rel="noopener">github.com/Arinapan</a>
+    <span class="divider">·</span>
+    <a href="resume.pdf" target="_blank" data-en="Résumé PDF ↓">简历 PDF ↓</a>
+    <span class="divider">·</span>
+    <span data-en="NUS · Tongji University">新加坡国立大学 · 同济大学</span>
   </div>
 
   <div class="metrics" id="metrics">
-    <div class="metric"><b data-count="2759" data-prefix="+" data-suffix="%">+2759%</b><small>独立孵化新垂类，赛道 Revenue 相对增长</small></div>
-    <div class="metric"><b data-count="99.5" data-suffix="%">99.5%</b><small>置信度下的付费留存提升（亿级用户产品）</small></div>
-    <div class="metric"><b data-count="100" data-suffix="%+">100%+</b><small>多 Agent 管线带来的获新效率提升</small></div>
-    <div class="metric"><b data-count="50" data-suffix="%+">50%+</b><small>ASO 重构后的安装转化提升</small></div>
+    <div class="metric"><b data-count="2759" data-prefix="+" data-suffix="%">+2759%</b><small data-en="Category revenue growth of a new vertical I incubated solo<i>WoodSense · Google official data</i>">独立孵化新垂类，赛道 Revenue 相对增长<i>WoodSense · Google 官方口径</i></small></div>
+    <div class="metric"><b data-count="2.4" data-prefix="+" data-suffix="%">+2.4%</b><small data-en="Paid retention lift, absolute (p&lt;0.005)<i>PictureThis · 100M+ user product</i>">付费留存绝对值提升（p&lt;0.005）<i>PictureThis · 亿级用户产品</i></small></div>
+    <div class="metric"><b data-count="100" data-suffix="%+">100%+</b><small data-en="Relative lift in acquisition efficiency<i>Agent Growth Engine · went live</i>">获新效率相对提升<i>Agent 增长引擎 · 已上线验证</i></small></div>
+    <div class="metric"><b data-count="50" data-suffix="%+">50%+</b><small data-en="Install conversion lift after ASO rebuild<i>PictureThis · App Store</i>">ASO 重构后安装转化相对提升<i>PictureThis · App Store</i></small></div>
   </div>
 </header>
 
 <section class="reveal" id="works-section">
   <p class="eyebrow">Selected Works</p>
-  <h2>作品星图</h2>
-  <p class="section-note">每张卡片是一扇传送门——点进去，背景、声音与交互都会变成那个作品的世界。手机和机房，都可以真实操作。</p>
+  <h2 data-en="Constellation of Works">作品星图</h2>
+  <p class="section-note" data-en="Each card is a portal — step in and the background, sound and interactions become that product&#39;s world. The phones and the machine room are all fully operable.">每张卡片是一扇传送门——点进去，背景、声音与交互都会变成那个作品的世界。手机和机房，都可以真实操作。</p>
 
   <div class="works-grid" id="works-grid">
     <button class="portal big" data-world="ws" data-kind="产品" aria-haspopup="dialog">
+      <span class="pstatus live" data-en="LIVE · 4.7★ Both stores">已上架 · 4.7★ 双端</span>
       <canvas class="portal-art" id="art-ws" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
-        <div class="portal-kind">产品 · 新垂类 0→1</div>
+        <div class="portal-kind" data-en="Product · New vertical 0→1">产品 · 新垂类 0→1</div>
         <div class="portal-title">WoodSense: Craft &amp; Identifier</div>
-        <p class="portal-desc">拍照识别木材与家具工艺的垂类 AI 应用。赛道 Revenue +2759%，4.7★ 双端上架。</p>
-        <span class="portal-cta">进入木质世界</span>
+        <p class="portal-desc" data-en="Vertical AI app that identifies wood species and furniture craftsmanship from a photo. Category revenue +2759%.">拍照识别木材与家具工艺的垂类 AI 应用。赛道 Revenue +2759%。</p>
+        <span class="portal-cta" data-en="Enter the wood world">进入木质世界</span>
       </div>
     </button>
     <button class="portal big" data-world="mb" data-kind="产品" aria-haspopup="dialog">
+      <span class="pstatus live" data-en="LIVE · App Store">已上架 · App Store</span>
       <canvas class="portal-art" id="art-mb" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
-        <div class="portal-kind">产品 · AI 音乐 × Wellness</div>
+        <div class="portal-kind" data-en="Product · AI Music × Wellness">产品 · AI 音乐 × Wellness</div>
         <div class="portal-title">ManiBeat: AI Music Manifest</div>
-        <p class="portal-desc">把「显化」愿望谱成 AI 音乐的 wellness 应用。demo 里真的会响。</p>
-        <span class="portal-cta">进入显化世界</span>
+        <p class="portal-desc" data-en="A wellness app that turns manifestation wishes into AI-generated music. The demo actually plays sound.">把「显化」愿望谱成 AI 音乐的 wellness 应用。demo 里真的会响。</p>
+        <span class="portal-cta" data-en="Enter the manifest world">进入显化世界</span>
       </div>
     </button>
     <button class="portal big" data-world="pl" data-kind="产品" aria-haspopup="dialog">
+      <span class="pstatus side" data-en="SIDE PROJECT · Unreleased">个人开发 · 未上架</span>
       <canvas class="portal-art" id="art-pl" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
-        <div class="portal-kind">产品 · 个人独立开发</div>
+        <div class="portal-kind" data-en="Product · Personal build">产品 · 个人独立开发</div>
         <div class="portal-title">Polaris · 学习双引擎</div>
-        <p class="portal-desc">「今天该学什么」交给产品回答：遗忘曲线排今日计划，任何主题拆成关卡路径，走通的路径可复用。</p>
-        <span class="portal-cta">进入知识星图</span>
+        <p class="portal-desc" data-en="Let the product answer &#39;what should I learn today&#39;: a forgetting-curve daily feed, any topic as a level path, and reusable learning paths.">「今天该学什么」交给产品回答：遗忘曲线排今日计划，任何主题拆成关卡路径，走通的路径可复用。</p>
+        <span class="portal-cta" data-en="Enter the star map">进入知识星图</span>
       </div>
     </button>
     <button class="portal big" data-world="sc" data-kind="产品" aria-haspopup="dialog">
+      <span class="pstatus side" data-en="SIDE PROJECT · Unreleased">个人开发 · 未上架</span>
       <canvas class="portal-art" id="art-sc" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
-        <div class="portal-kind">产品 · 个人独立开发 · 情绪疗愈</div>
+        <div class="portal-kind" data-en="Product · Personal build · Emotional wellness">产品 · 个人独立开发 · 情绪疗愈</div>
         <div class="portal-title">薛定谔的喵 · Schrödinger's Meow</div>
-        <p class="portal-desc">领养一只盒子里的小猫，每次对话都是一次「观测」——和年轻人聊聊不确定性。</p>
-        <span class="portal-cta">打开盒子</span>
+        <p class="portal-desc" data-en="Adopt a cat that lives in a box — every conversation is an &#39;observation&#39;. A companion for making peace with uncertainty.">领养一只盒子里的小猫，每次对话都是一次「观测」——和年轻人聊聊不确定性。</p>
+        <span class="portal-cta" data-en="Open the box">打开盒子</span>
       </div>
     </button>
     <button class="portal big" data-world="ag" data-kind="系统" aria-haspopup="dialog">
+      <span class="pstatus internal" data-en="INTERNAL SYSTEM · Validated">内部系统 · 已上线验证</span>
       <canvas class="portal-art" id="art-ag" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
-        <div class="portal-kind">系统 · 多 Agent 管线</div>
-        <div class="portal-title">Agent 增长引擎</div>
-        <p class="portal-desc">热点信号 → 创意 → App 承接 → 反馈迭代的自动闭环：素材获客从灵感驱动变成流水线。</p>
-        <span class="portal-cta">进入机房</span>
+        <div class="portal-kind" data-en="System · Multi-agent pipeline">系统 · 多 Agent 管线</div>
+        <div class="portal-title" data-en="Agent Growth Engine">Agent 增长引擎</div>
+        <p class="portal-desc" data-en="An automated loop of signal → creative → in-app landing → feedback: ad creative production turned from inspiration into a pipeline.">热点信号 → 创意 → App 承接 → 反馈迭代的自动闭环：素材获客从灵感驱动变成流水线。</p>
+        <span class="portal-cta" data-en="Enter the machine room">进入机房</span>
       </div>
     </button>
   </div>
 </section>
 
-<section class="reveal">
+<section class="reveal" id="exp-section">
   <p class="eyebrow">Experience</p>
-  <h2>经历速览</h2>
+  <h2 data-en="Experience">经历速览</h2>
 
   <div class="rline">
-    <div class="co">ThetaWave<span>AI 学习应用 · 海外学生市场</span></div>
-    <span class="period">2026.4 – 至今</span>
+    <div class="co">ThetaWave<span data-en="AI learning app · overseas student market">AI 学习应用 · 海外学生市场</span></div>
+    <span class="period" data-en="2026.4 – Now">2026.4 – 至今</span>
   </div>
-  <p class="rdesc">AI 产品经理。独立 Owner 完成<b>新学习板块 0→1 孵化</b>（8+ 竞品拆解 → 四项关键决策拍板 → 全链路可交互 Demo），设计 <b>AI 课程内容生产管线</b>与<b>主动学习引擎</b>；以一手数据重建用户画像、纠偏产品方向。</p>
+  <p class="rdesc" data-en="AI Product Manager. Sole owner of a <b>new learning-vertical 0→1 incubation</b> (8+ competitor teardowns → 4 key decisions landed → full interactive demo); designed the <b>AI course-content pipeline</b> and a <b>proactive learning engine</b>; rebuilt the user portrait from first-hand data and corrected product direction.">AI 产品经理。独立 Owner 完成<b>新学习板块 0→1 孵化</b>（8+ 竞品拆解 → 四项关键决策拍板 → 全链路可交互 Demo），设计 <b>AI 课程内容生产管线</b>与<b>主动学习引擎</b>；以一手数据重建用户画像、纠偏产品方向。</p>
   <div class="rtags">
-    <span class="rtag">0→1 孵化</span><span class="rtag">数据洞察</span><span class="rtag">LLM 产品</span><span class="rtag">内容产线</span>
+    <span class="rtag" data-en="0→1 Incubation">0→1 孵化</span><span class="rtag" data-en="Data insight">数据洞察</span><span class="rtag" data-en="LLM products">LLM 产品</span><span class="rtag" data-en="Content pipeline">内容产线</span>
   </div>
 
   <div class="rline">
-    <div class="co">杭州睿琪软件 Glority<span>海外应用商店营收榜 TOP3</span></div>
+    <div class="co">Glority<span data-en="Top-3 grossing app publisher (overseas stores)">海外应用商店营收榜 TOP3</span></div>
     <span class="period">2025.4 – 2026.4</span>
   </div>
-  <p class="rdesc">AI 产品经理。亿级用户产品 PictureThis 的功能与增长：付费留存 <b>99.5% 置信度</b>大幅提升、安装转化 <b>50%+</b>；独立孵化新垂类应用 WoodSense，赛道 Revenue <b>+2759%</b>；自建多 Agent GTM 管线成为第一大投放来源，获新效率 <b>100%+</b>。</p>
+  <p class="rdesc" data-en="AI Product Manager. Growth on PictureThis (100M+ users): paid retention <b>+2.4% absolute (p&lt;0.005)</b>, install conversion <b>+50%</b>; solo-incubated the new vertical WoodSense, category revenue <b>+2759%</b>; built a multi-agent GTM pipeline that became the #1 ad-spend source with <b>+100%</b> acquisition efficiency.">AI 产品经理。亿级用户产品 PictureThis 的功能与增长：付费留存<b>绝对值 +2.4%（p&lt;0.005）</b>、安装转化 <b>50%+</b>；独立孵化新垂类应用 WoodSense，赛道 Revenue <b>+2759%</b>；自建多 Agent GTM 管线成为第一大投放来源，获新效率 <b>100%+</b>。</p>
   <div class="rtags">
-    <span class="rtag">增长</span><span class="rtag">商业化</span><span class="rtag">新垂类孵化</span><span class="rtag">Agent 化 GTM</span>
+    <span class="rtag" data-en="Growth">增长</span><span class="rtag" data-en="Monetization">商业化</span><span class="rtag" data-en="New-vertical incubation">新垂类孵化</span><span class="rtag" data-en="Agent-ized GTM">Agent 化 GTM</span>
   </div>
 
   <div class="rline">
-    <div class="co">更早<span>创业 · 科研</span></div>
+    <div class="co" data-en="Earlier<span>Startups · Research</span>">更早<span>创业 · 科研</span></div>
   </div>
-  <p class="rdesc">教育方向创业核心成员（增长与产品闭环 0→1）；HCI / Assistive Tech 研究与论文产出（CHI / CSCW 相关）。</p>
+  <p class="rdesc" data-en="Core member of an ed-tech startup (growth and product loop 0→1); HCI / Assistive Tech research with publications (CHI / CSCW).">教育方向创业核心成员（增长与产品闭环 0→1）；HCI / Assistive Tech 研究与论文产出（CHI / CSCW 相关）。</p>
 </section>
 
 <section class="reveal">
   <p class="eyebrow">Education & Honors</p>
-  <h2>教育与荣誉</h2>
+  <h2 data-en="Education &amp; Honors">教育与荣誉</h2>
   <div class="edu-row">
-    <div class="school">新加坡国立大学 · 硕士<span>人工智能与精准医疗 · GPA 4.6/5.0</span></div>
+    <div class="school" data-en="National University of Singapore · M.Sc.<span>AI &amp; Precision Medicine · GPA 4.6/5.0</span>">新加坡国立大学 · 硕士<span>人工智能与精准医疗 · GPA 4.6/5.0</span></div>
     <span class="right">2024.1 – 2025.3</span>
   </div>
   <div class="edu-row">
-    <div class="school">同济大学 · 本科<span>工业设计 &amp; 服务系统设计 双专业 · GPA 90/95</span></div>
+    <div class="school" data-en="Tongji University · B.Eng.<span>Industrial Design &amp; Service System Design · GPA 90/95</span>">同济大学 · 本科<span>工业设计 &amp; 服务系统设计 双专业 · GPA 90/95</span></div>
     <span class="right">2019.9 – 2023.7</span>
   </div>
   <div class="chips">
     <span class="chip hl">Red Dot</span>
     <span class="chip hl">IDEA</span>
     <span class="chip hl">K-Design</span>
-    <span class="chip">SQL · 漏斗 / 留存分析 · A/B Test</span>
-    <span class="chip">用户研究</span>
-    <span class="chip">Agent / LLM 应用构建</span>
+    <span class="chip" data-en="SQL · Funnel / Retention · A/B Test">SQL · 漏斗 / 留存分析 · A/B Test</span>
+    <span class="chip" data-en="User research">用户研究</span>
+    <span class="chip" data-en="Agent / LLM app building">Agent / LLM 应用构建</span>
   </div>
 </section>
 
-<section class="reveal">
+<section class="reveal" id="ach-section">
   <p class="eyebrow">Side Quests</p>
-  <h2>成就图鉴</h2>
-  <p class="section-note">主线之外攒下的经验值——点击徽章翻面。</p>
+  <h2 data-en="Achievements">成就图鉴</h2>
+  <p class="section-note" data-en="XP earned off the main quest line — click a badge to flip it.">主线之外攒下的经验值——点击徽章翻面。</p>
   <div class="ach-grid" id="ach-grid"></div>
 </section>
 
@@ -1136,27 +1211,29 @@ footer {
   <div class="world-scroll">
     <div class="world-inner">
       <div class="world-copy">
-        <div class="w-eyebrow">产品 · 新垂类 0→1 · Glority</div>
+        <div class="w-eyebrow" data-en="Product · New vertical 0→1 · Glority">产品 · 新垂类 0→1 · Glority</div>
         <h3 class="w-title">WoodSense</h3>
         <div class="w-sub">Create · Identify · Restore</div>
-        <p>拍一张照片，AI 识别木材种类与纹理、判断家具工艺与年代（燕尾榫、榫卯、中古风格）并给出参考估值；内置分步修复指南与木工项目库（切割清单 / 榫接尺寸 / 涂装方案）——面向木工爱好者与家具修复者的垂类 AI 应用。</p>
+        <p data-en="Snap a photo and AI identifies the wood species and grain, reads the furniture craftsmanship and era (dovetail, mortise-and-tenon, mid-century) with a value estimate; built-in step-by-step restoration guides and a project library (cut lists / joinery dimensions / finishes) — a vertical AI app for woodworkers and furniture restorers.">拍一张照片，AI 识别木材种类与纹理、判断家具工艺与年代（燕尾榫、榫卯、中古风格）并给出参考估值；内置分步修复指南与木工项目库（切割清单 / 榫接尺寸 / 涂装方案）——面向木工爱好者与家具修复者的垂类 AI 应用。</p>
+        <p class="w-key" data-en="<b>Key decision:</b> Project-first from Day 0 — AI output is never an encyclopedia answer of &#39;what wood is this&#39;, but actionable guidance bound to the project in the user&#39;s hands. This single call shaped both retention and monetization."><b>关键决策：</b>Day-0 就定 Project-first——AI 输出不做百科式识别，而是绑定用户手头的项目给可执行建议。这一个判断决定了后来的留存与付费结构。</p>
+        <p class="w-ai" data-en="<b>AI engineering:</b> shipped the first in-house recognition model with the algo team within one month (+10% absolute accuracy); confidence scores are exposed to users to build trust."><b>AI 工程：</b>配合算法团队一个月内上线第一版自研识别模型（准确率绝对值 +10%）；识别置信度直接暴露给用户以建立信任。</p>
         <div class="w-stats">
-          <span class="w-stat">赛道 Revenue +2759%</span>
-          <span class="w-stat">4.7★ 双端上架</span>
-          <span class="w-stat">自研模型准确率 +10%</span>
+          <span class="w-stat" data-en="Category revenue +2759%">赛道 Revenue +2759%</span>
+          <span class="w-stat" data-en="4.7★ on both stores">4.7★ 双端上架</span>
+          <span class="w-stat" data-en="In-house model accuracy +10%">自研模型准确率 +10%</span>
         </div>
-        <details>
-          <summary>项目故事：从 0 到可加码的业务验证</summary>
-          <p style="margin-top:10px"><b>背景：</b>新垂类 AI 应用从 0 启动，面临「方向是否成立、能否投放放量」的双重不确定性。木工与家具修复是高热情、高复购的垂类人群，但市面上没有把「识别 + 修复指导 + 制作规划」串成闭环的产品。</p>
-          <p><b>我的角色：</b>以独立 Owner 完成用户研究、市场验证、产品定位与商业化策略的一体化孵化。确立 Project-first（任务驱动）的 Day-0 定位——AI 输出不止于「这是什么木头」，而是直接给出与用户手头项目相关的可执行建议；配合算法团队一个月内上线第一版自研识别模型，准确率绝对值提升 10%。</p>
-          <p><b>结果：</b>跑通「获客→激活→留存→回收」完整闭环，赛道在 Google 官方口径下实现 Revenue 相对过往 +2759%；双端上架 4.7★，完成从试验到可加码的业务验证。</p>
+        <details open>
+          <summary data-en="Project story: from zero to a scale-worthy business case">项目故事：从 0 到可加码的业务验证</summary>
+          <p style="margin-top:10px" data-en="<b>Context:</b> a brand-new vertical faces double uncertainty — is the direction real, and can paid acquisition scale? Woodworking and furniture restoration is a high-passion, high-repeat community, yet no product chained identification + restoration guidance + build planning into one loop."><b>背景：</b>新垂类 AI 应用从 0 启动，面临「方向是否成立、能否投放放量」的双重不确定性。木工与家具修复是高热情、高复购的垂类人群，但市面上没有把「识别 + 修复指导 + 制作规划」串成闭环的产品。</p>
+          <p data-en="<b>My role:</b> sole owner across user research, market validation, positioning and monetization. Landed the Project-first Day-0 positioning, and shipped the first in-house recognition model with the algo team within a month (+10% absolute accuracy)."><b>我的角色：</b>以独立 Owner 完成用户研究、市场验证、产品定位与商业化策略的一体化孵化，确立 Project-first 的 Day-0 定位；配合算法团队一个月内上线第一版自研识别模型，准确率绝对值提升 10%。</p>
+          <p data-en="<b>Result:</b> closed the full acquire → activate → retain → monetize loop; category revenue +2759% vs. prior (Google official data); 4.7★ on both stores — validated from experiment to scale-worthy."><b>结果：</b>跑通「获客→激活→留存→回收」完整闭环，赛道在 Google 官方口径下实现 Revenue 相对过往 +2759%；双端上架 4.7★，完成从试验到可加码的业务验证。</p>
         </details>
         <div class="w-actions">
           <a class="w-link" href="https://apps.apple.com/us/app/woodsense-craft-identifier/id6754165620" target="_blank" rel="noopener">App Store ↗</a>
         </div>
       </div>
       <div class="world-demo">
-        <span class="w-hint">Live Demo · 三个页签都能玩</span>
+        <span class="w-hint" data-en="Live Demo · All three tabs are playable">Live Demo · 三个页签都能玩</span>
         <div class="phone ws">
           <div class="phone-screen" id="ws-screen"></div>
         </div>
@@ -1172,27 +1249,28 @@ footer {
   <div class="world-scroll">
     <div class="world-inner">
       <div class="world-copy">
-        <div class="w-eyebrow">产品 · AI 音乐 × Wellness</div>
+        <div class="w-eyebrow" data-en="Product · AI Music × Wellness">产品 · AI 音乐 × Wellness</div>
         <h3 class="w-title">ManiBeat</h3>
         <div class="w-sub">Wish · Frequency · Music</div>
-        <p>把年轻人的「显化 manifestation」情绪需求与 AI 音乐生成结合：写下你的意图，选择疗愈频率（432Hz / 528Hz / Theta…）、时长与风格（Ambient / Lo-Fi / Orchestral），AI 生成围绕这个愿望的专属音轨——把泛化的 AI 音乐落成<b>每日显化仪式</b>。</p>
+        <p data-en="Where Gen-Z&#39;s manifestation culture meets AI music generation: write your intention, pick a healing frequency (432Hz / 528Hz / Theta…), duration and style (Ambient / Lo-Fi / Orchestral), and AI composes a track around that wish — turning generic AI music into a <b>daily manifestation ritual</b>.">把年轻人的「显化 manifestation」情绪需求与 AI 音乐生成结合：写下你的意图，选择疗愈频率（432Hz / 528Hz / Theta…）、时长与风格（Ambient / Lo-Fi / Orchestral），AI 生成围绕这个愿望的专属音轨——把泛化的 AI 音乐落成<b>每日显化仪式</b>。</p>
+        <p class="w-key" data-en="<b>Key decision:</b> don&#39;t build a generic AI music generator — bind every generation to one wish. The same intention sounds fresh every day, turning novelty into ritual, and ritual into retention."><b>关键决策：</b>不做泛化的 AI 音乐生成器——把每次生成绑定在「一个愿望」上。同一意图每天常听常新，novelty 变成仪式，仪式变成留存。</p>
+        <p class="w-ai" data-en="<b>AI engineering:</b> generation is parameterized by fixed contracts (frequency / duration / style), producing controllable randomness — same wish, different track, consistent identity."><b>AI 工程：</b>生成走固定参数契约（频率 / 时长 / 风格），实现可控随机——同一愿望、不同音轨、一致气质。</p>
         <div class="w-stats">
-          <span class="w-stat">AI 生成音乐 + 显化意图</span>
-          <span class="w-stat">订阅制 Premium</span>
-          <span class="w-stat">iOS · visionOS 上架</span>
+          <span class="w-stat" data-en="AI music + manifest intent">AI 生成音乐 + 显化意图</span>
+          <span class="w-stat" data-en="Premium subscription">订阅制 Premium</span>
+          <span class="w-stat" data-en="Live on iOS · visionOS">iOS · visionOS 上架</span>
         </div>
-        <details>
-          <summary>项目故事：显化潮流 × AI 音乐的空档</summary>
-          <p style="margin-top:10px"><b>背景：</b>「显化」是 Z 世代最大的情绪自助潮流之一，但市面上的显化产品大多停留在文字肯定语与日记；另一边，AI 音乐生成能力刚成熟，却多是「玩一次就走」的 novelty。两者之间存在空档——把 AI 音乐变成围绕一个愿望的每日聆听仪式。</p>
-          <p><b>产品机制：</b>写下显化意图，选择声音疗愈频率（432Hz / 528Hz / 396Hz / Theta / Alpha）、时长（3–20 分钟）与风格，AI 生成专属音轨（My Manifestation）；以「回来听自己的愿望」构建每日留存，配套 Loop / 定时 / 分享 / Blueprint；订阅解锁无限生成。</p>
-          <p><b>结果：</b>【待补充：你的角色与上线后的关键数据 / 验证结论】</p>
+        <details open>
+          <summary data-en="Project story: the gap between manifestation and AI music">项目故事：显化潮流 × AI 音乐的空档</summary>
+          <p style="margin-top:10px" data-en="<b>Context:</b> manifestation is one of Gen-Z&#39;s biggest self-help movements, yet most products stop at text affirmations and journals; meanwhile AI music generation matured but stayed a play-once novelty. The gap: make AI music a daily listening ritual around one wish."><b>背景：</b>「显化」是 Z 世代最大的情绪自助潮流之一，但市面上的显化产品大多停留在文字肯定语与日记；另一边，AI 音乐生成能力刚成熟，却多是「玩一次就走」的 novelty。两者之间存在空档——把 AI 音乐变成围绕一个愿望的每日聆听仪式。</p>
+          <p data-en="<b>Mechanics:</b> write an intention, choose a sound-healing frequency (432/528/396Hz, Theta, Alpha), duration (3–20 min) and style; AI composes &#39;My Manifestation&#39;. Daily retention is built on coming back to listen to your own wish, with Loop / Timer / Share / Blueprint; subscription unlocks unlimited generation."><b>产品机制：</b>写下显化意图，选择声音疗愈频率（432Hz / 528Hz / 396Hz / Theta / Alpha）、时长（3–20 分钟）与风格，AI 生成专属音轨（My Manifestation）；以「回来听自己的愿望」构建每日留存，配套 Loop / 定时 / 分享 / Blueprint；订阅解锁无限生成。</p>
         </details>
         <div class="w-actions">
           <a class="w-link" href="https://apps.apple.com/us/app/manibeat-ai-music-manifest/id6760638260" target="_blank" rel="noopener">App Store ↗</a>
         </div>
       </div>
       <div class="world-demo">
-        <span class="w-hint">Live Demo · 🎧 真的有声音</span>
+        <span class="w-hint" data-en="Live Demo · 🎧 It really plays sound">Live Demo · 🎧 真的有声音</span>
         <div class="phone mb">
           <div class="phone-screen" id="mb-screen"></div>
         </div>
@@ -1208,26 +1286,28 @@ footer {
   <div class="world-scroll">
     <div class="world-inner">
       <div class="world-copy">
-        <div class="w-eyebrow">产品 · 个人独立开发</div>
+        <div class="w-eyebrow" data-en="Product · Personal build">产品 · 个人独立开发</div>
         <h3 class="w-title">Polaris</h3>
         <div class="w-sub">Daily Feed × Explore</div>
-        <p><b>核心命题：</b>学习工具的留存困境，在于「今天该学什么」永远被丢回给用户。Polaris 让产品接管这个问题——<b>今日 Feed</b> 用遗忘曲线与原题拆解生成每日计划，每张卡片都写明「为什么是它」；<b>探索</b>把任何主题拆成关卡路径，像 Blinkist 拆书一样拆解一切要学的东西。</p>
-        <p>最关键的一环：学完的备考路径可以<b>一键发布成课程（PGC）</b>——每个认真备过考的人，都是下一个考生最好的老师。这让「学」与「教」在同一个产品里闭环。</p>
+        <p data-en="<b>Core thesis:</b> learning tools lose users because &#39;what should I learn today&#39; is always thrown back at the learner. Polaris takes it over — the <b>Daily Feed</b> plans each day from the forgetting curve and past-question decomposition, every card stating &#39;why this one&#39;; <b>Explore</b> breaks any topic into a level path, the way Blinkist breaks down books."><b>核心命题：</b>学习工具的留存困境，在于「今天该学什么」永远被丢回给用户。Polaris 让产品接管这个问题——<b>今日 Feed</b> 用遗忘曲线与原题拆解生成每日计划，每张卡片都写明「为什么是它」；<b>探索</b>把任何主题拆成关卡路径，像 Blinkist 拆书一样拆解一切要学的东西。</p>
+        <p class="w-key" data-en="<b>Key decision:</b> automation must earn trust before it takes over — every recommendation exposes its reason (mastery slipping / you failed this variant last week). Reasons first, autopilot second."><b>关键决策：</b>自动化接管之前先赢得信任——每张推荐卡都暴露理由（掌握度滑落 / 上周你在变式题栽过）。先讲理由，再谈托管。</p>
+        <p class="w-ai" data-en="<b>AI engineering:</b> models split by cost — light models for extraction / outlining, strong models for learner-facing composition; schema-enforced structured outputs; mastery modeled with SM-2 stability + forgetting curve, updated only on real answers."><b>AI 工程：</b>多模型按成本分工——抽取 / 大纲用轻模型，面向学习者的编排生成用强模型；输出用 schema 强约束；掌握度用 SM-2 稳定性 + 遗忘曲线建模，只在真实作答后更新。</p>
+        <p data-en="The deepest loop: a finished exam-prep path can be <b>published as a course in one tap (PGC)</b> — everyone who seriously prepared for an exam is the next candidate&#39;s best teacher. Learning and teaching close the loop inside one product.">最关键的一环：学完的备考路径可以<b>一键发布成课程（PGC）</b>——每个认真备过考的人，都是下一个考生最好的老师。这让「学」与「教」在同一个产品里闭环。</p>
         <div class="w-stats">
-          <span class="w-stat">Duolingo 式关卡引擎</span>
-          <span class="w-stat">遗忘曲线驱动每日 Feed</span>
-          <span class="w-stat">路径 PGC 闭环</span>
+          <span class="w-stat" data-en="Duolingo-style level engine">Duolingo 式关卡引擎</span>
+          <span class="w-stat" data-en="Forgetting-curve daily feed">遗忘曲线驱动每日 Feed</span>
+          <span class="w-stat" data-en="Path-as-course PGC loop">路径 PGC 闭环</span>
         </div>
-        <details>
-          <summary>项目故事：为什么是双引擎</summary>
-          <p style="margin-top:10px"><b>背景：</b>工具型学习产品的共同困境是「用户传完资料、做完题就走」——缺少回答「今天该学什么」的主动性抓手。调研 8+ 竞品后发现两个事实：「任意主题→关卡路径」的 to C 产品至今没有赢家；而「学习路径的一键分享」几乎是空白。</p>
-          <p><b>我做了什么：</b>个人独立完成——竞品结构化拆解 → 双引擎产品定义 → 关卡内容范式与题型设计（先猜 → 揭示 → 命名 → 用到你身上）→ 全部交互与前端实现。</p>
-          <p><b>方法上的坚持：</b>游戏化只奖励真实学习行为（不做惩罚型机制）；先让人试、再让人懂；掌握度只在真实作答后更新，被动浏览不算学会。</p>
+        <details open>
+          <summary data-en="Project story: why two engines">项目故事：为什么是双引擎</summary>
+          <p style="margin-top:10px" data-en="<b>Context:</b> tool-type learning products share one plight — users upload, finish, and leave. After tearing down 8+ competitors, two facts: no to-C winner exists for &#39;any topic → level path&#39;, and one-tap sharing of learning paths is near blank space."><b>背景：</b>工具型学习产品的共同困境是「用户传完资料、做完题就走」——缺少回答「今天该学什么」的主动性抓手。调研 8+ 竞品后发现两个事实：「任意主题→关卡路径」的 to C 产品至今没有赢家；而「学习路径的一键分享」几乎是空白。</p>
+          <p data-en="<b>What I did:</b> everything solo — structured competitive teardown → dual-engine product definition → lesson paradigm and question-type design (guess → reveal → name it → apply) → all interaction and front-end implementation."><b>我做了什么：</b>个人独立完成——竞品结构化拆解 → 双引擎产品定义 → 关卡内容范式与题型设计（先猜 → 揭示 → 命名 → 用到你身上）→ 全部交互与前端实现。</p>
+          <p data-en="<b>Principles held:</b> gamification only rewards real learning (no punishment mechanics); let people try before telling; mastery updates only on real answers — browsing never counts as knowing."><b>方法上的坚持：</b>游戏化只奖励真实学习行为（不做惩罚型机制）；先让人试、再让人懂；掌握度只在真实作答后更新，被动浏览不算学会。</p>
         </details>
-        <div class="w-note">* 个人独立开发作品（未上架），演示数据为虚构。</div>
+        <div class="w-note" data-en="* Personal build (unreleased); demo data is fictional.">* 个人独立开发作品（未上架），演示数据为虚构。</div>
       </div>
       <div class="world-demo">
-        <span class="w-hint">Live Demo · 每张卡都写着「为什么是它」</span>
+        <span class="w-hint" data-en="Live Demo · Every card states why it&#39;s here">Live Demo · 每张卡都写着「为什么是它」</span>
         <div class="phone pl">
           <div class="phone-screen" id="pl-screen"></div>
         </div>
@@ -1243,26 +1323,28 @@ footer {
   <div class="world-scroll">
     <div class="world-inner">
       <div class="world-copy">
-        <div class="w-eyebrow">产品 · 个人独立开发 · 情绪疗愈</div>
-        <h3 class="w-title">薛定谔的喵</h3>
-        <div class="w-sub">Schrödinger's Meow · Observe Your Cat</div>
-        <p>一个帮年轻人与「不确定性」和解的心情疗愈 app。借薛定谔的猫的概念：领养一只住在盒子里的小猫作为你的<b>观测对象</b>——在你观测之前，它的一天什么都可能发生；每次发起对话都是一次观测，小猫会回你一张天马行空的照片证明它正在干什么，再用语聊陪你聊聊今天心里的天气、那些悬而未决的事。</p>
-        <p>对话在持续沉淀你的<b>心理评估标签</b>与「不确定性耐受度」评分；配合每日观测、记录「没炸的事」、晚安信等游戏化任务，让心理状态成为可以温柔养成的东西。</p>
+        <div class="w-eyebrow" data-en="Product · Personal build · Emotional wellness">产品 · 个人独立开发 · 情绪疗愈</div>
+        <h3 class="w-title" data-en="Schrödinger's Meow">薛定谔的喵</h3>
+        <div class="w-sub" data-en="Observe Your Cat · Befriend Uncertainty">Schrödinger's Meow · Observe Your Cat</div>
+        <p data-en="A mood-healing app that helps young people make peace with <b>uncertainty</b>, built on Schrödinger&#39;s cat: adopt a cat that lives in a box as your observation target — before you observe, anything could be happening in its day. Every conversation is an observation: the cat replies with a whimsical photo proving what it was doing, then voice-chats with you about the weather inside your head and everything still up in the air.">一个帮年轻人与「不确定性」和解的心情疗愈 app。借薛定谔的猫的概念：领养一只住在盒子里的小猫作为你的<b>观测对象</b>——在你观测之前，它的一天什么都可能发生；每次发起对话都是一次观测，小猫会回你一张天马行空的照片证明它正在干什么，再用语聊陪你聊聊今天心里的天气、那些悬而未决的事。</p>
+        <p class="w-key" data-en="<b>Key decision:</b> refuse the &#39;meditation homework&#39; framing — turn coping-with-uncertainty into playful micro-interactions (observe, photo, chat), so self-care feels like feeding a cat, not doing therapy."><b>关键决策：</b>拒绝把它做成「冥想式功课」——用观测隐喻把与不确定共处拆成一次次轻交互（观测、照片、聊天），让自我关怀像喂猫，而不像治疗。</p>
+        <p class="w-ai" data-en="<b>AI engineering:</b> photos via image generation, companionship via LLM voice-chat; psychological assessment is an accumulating tag system built turn by turn from conversations — never a one-shot questionnaire."><b>AI 工程：</b>照片走图像生成、陪伴走 LLM 语聊；心理评估做成随对话逐轮累积的标签体系，而非一次性问卷。</p>
+        <p data-en="Conversations keep distilling your <b>assessment tags</b> and an Uncertainty Tolerance score; daily observations, &#39;it didn&#39;t blow up&#39; journaling and goodnight letters make the score something you gently level up.">对话在持续沉淀你的<b>心理评估标签</b>与「不确定性耐受度」评分；配合每日观测、记录「没炸的事」、晚安信等游戏化任务，让心理状态成为可以温柔养成的东西。</p>
         <div class="w-stats">
-          <span class="w-stat">观测 = 核心交互隐喻</span>
-          <span class="w-stat">AI 图像 + 语聊陪伴</span>
-          <span class="w-stat">心理评估标签体系</span>
+          <span class="w-stat" data-en="Observation as core metaphor">观测 = 核心交互隐喻</span>
+          <span class="w-stat" data-en="AI images + voice companionship">AI 图像 + 语聊陪伴</span>
+          <span class="w-stat" data-en="Psych assessment tag system">心理评估标签体系</span>
         </div>
-        <details>
-          <summary>项目故事：为什么是薛定谔的猫</summary>
-          <p style="margin-top:10px"><b>背景：</b>年轻人的焦虑大多来自对不确定的灾难化想象——offer 没回、体检报告没出、消息未读。市面的冥想 / 正念 app 太「正确」、太像功课；缺一个轻盈的、有陪伴感的入口，把「与不确定共处」变成日常练习而不是治疗。</p>
-          <p><b>产品机制：</b>薛定谔的猫是完美的隐喻载体——「盒子未开，结局未定」。用户上传或从库里选一只小猫建档，观测（对话）时 AI 生成小猫的奇想照片作为「观测证据」，语聊围绕不确定性话题展开；每轮对话更新心理评估标签与耐受度评分，游戏化任务驱动每日回访与评分成长。</p>
-          <p><b>状态：</b>个人独立开发作品——从概念、交互到实现均由本人完成，用于探索「AI 陪伴 × 心理自助」的产品范式。</p>
+        <details open>
+          <summary data-en="Project story: why Schrödinger&#39;s cat">项目故事：为什么是薛定谔的猫</summary>
+          <p style="margin-top:10px" data-en="<b>Context:</b> young people&#39;s anxiety mostly comes from catastrophizing the unresolved — the unanswered offer, the pending test report, the unread message. Meditation apps feel too &#39;correct&#39;, too much like homework; what&#39;s missing is a light, companionable way to practice living with uncertainty."><b>背景：</b>年轻人的焦虑大多来自对不确定的灾难化想象——offer 没回、体检报告没出、消息未读。市面的冥想 / 正念 app 太「正确」、太像功课；缺一个轻盈的、有陪伴感的入口，把「与不确定共处」变成日常练习而不是治疗。</p>
+          <p data-en="<b>Mechanics:</b> Schrödinger&#39;s cat is the perfect vessel — box unopened, ending undecided. Upload or pick a cat, observe it through conversation; AI generates the cat&#39;s whimsical photo as observation evidence, chat orbits uncertainty topics; each round updates assessment tags and the tolerance score, gamified quests drive daily returns."><b>产品机制：</b>薛定谔的猫是完美的隐喻载体——「盒子未开，结局未定」。用户上传或从库里选一只小猫建档，观测（对话）时 AI 生成小猫的奇想照片作为「观测证据」，语聊围绕不确定性话题展开；每轮对话更新心理评估标签与耐受度评分，游戏化任务驱动每日回访与评分成长。</p>
+          <p data-en="<b>Status:</b> personal build — concept, interaction and implementation all by me, exploring the &#39;AI companionship × self-help&#39; product paradigm."><b>状态：</b>个人独立开发作品——从概念、交互到实现均由本人完成，用于探索「AI 陪伴 × 心理自助」的产品范式。</p>
         </details>
-        <div class="w-note">* 个人独立开发作品（未上架）。小猫照片在正式产品中由 AI 生成，此处为手绘示意。</div>
+        <div class="w-note" data-en="* Personal build (unreleased). Cat photos are AI-generated in the real product; hand-drawn here for the demo.">* 个人独立开发作品（未上架）。小猫照片在正式产品中由 AI 生成，此处为手绘示意。</div>
       </div>
       <div class="world-demo">
-        <span class="w-hint">Live Demo · 观测你的小猫</span>
+        <span class="w-hint" data-en="Live Demo · Observe your cat">Live Demo · 观测你的小猫</span>
         <div class="phone sc">
           <div class="phone-screen" id="sc-screen"></div>
         </div>
@@ -1278,25 +1360,28 @@ footer {
   <div class="world-scroll">
     <div class="world-inner">
       <div class="world-copy">
-        <div class="w-eyebrow">系统 · 多 Agent 管线 · Glority</div>
-        <h3 class="w-title">Agent 增长引擎</h3>
+        <div class="w-eyebrow" data-en="System · Multi-agent pipeline · Glority">系统 · 多 Agent 管线 · Glority</div>
+        <h3 class="w-title" data-en="Agent Growth Engine">Agent 增长引擎</h3>
         <div class="w-sub">Signal → Creative → Product → Feedback</div>
-        <p>素材获客的老毛病是<b>迭代慢、靠灵感</b>。我独立搭建的多 Agent 管线把它变成一条自动闭环流水线：<b>信号 Agent</b> 持续扫描平台趋势与用户讨论；<b>创意 Agent</b> 把信号翻译成素材脚本并预估表现；<b>承接 Agent</b> 让 App 首屏与深链跟着素材同步变化；<b>反馈 Agent</b> 读投放数据、定位弱点，自动发起下一轮迭代——人只在关键节点做判断。</p>
-        <p>同一套框架延伸出三个研究 Agent（<b>Idea 孵化</b> / <b>场景痛点</b> / <b>爆款素材拆解</b>），支撑新品孵化：最终验证 1 个新产品方向，并把洞察落成 3 个可上线功能。</p>
+        <p data-en="Ad-creative acquisition suffers from <b>slow iteration and inspiration dependence</b>. The multi-agent pipeline I built solo turns it into a closed-loop assembly line: the <b>Signal agent</b> scans platform trends; the <b>Creative agent</b> translates signals into ad scripts with predicted performance; the <b>Landing agent</b> keeps the app&#39;s first screen and deep links in sync with each creative; the <b>Feedback agent</b> reads campaign data, locates weaknesses and auto-triggers the next round — humans judge only at key checkpoints.">素材获客的老毛病是<b>迭代慢、靠灵感</b>。我独立搭建的多 Agent 管线把它变成一条自动闭环流水线：<b>信号 Agent</b> 持续扫描平台趋势与用户讨论；<b>创意 Agent</b> 把信号翻译成素材脚本并预估表现；<b>承接 Agent</b> 让 App 首屏与深链跟着素材同步变化；<b>反馈 Agent</b> 读投放数据、定位弱点，自动发起下一轮迭代——人只在关键节点做判断。</p>
+        <p class="w-key" data-en="<b>Key decision:</b> when feedback misses target, the diagnosis flows back into the creative layer automatically and reruns — it never lands back on a human&#39;s to-do list. Only a true closed loop compresses iteration cycles."><b>关键决策：</b>反馈不达标时，诊断自动回流创意层重跑——而不是回到人的待办清单。只有真闭环才能压缩迭代周期。</p>
+        <p class="w-ai" data-en="<b>AI engineering:</b> each agent speaks a fixed JSON contract so the pipeline composes; the Feedback agent&#39;s pass/fail thresholds are calibrated on historical campaign data."><b>AI 工程：</b>每个 Agent 用固定 JSON 契约串联管线；反馈 Agent 的判定阈值由历史投放数据校准。</p>
+        <p data-en="The same framework extends into three research agents (<b>idea incubation</b> / <b>scenario pain-points</b> / <b>viral-creative teardown</b>) that fed new-product incubation: 1 validated product direction and 3 shippable features.">同一套框架延伸出三个研究 Agent（<b>Idea 孵化</b> / <b>场景痛点</b> / <b>爆款素材拆解</b>），支撑新品孵化：最终验证 1 个新产品方向，并把洞察落成 3 个可上线功能。</p>
         <div class="w-stats">
-          <span class="w-stat">第一大投放消耗来源</span>
-          <span class="w-stat">获新效率 +100%</span>
-          <span class="w-stat">3 类研究 Agent</span>
+          <span class="w-stat" data-en="#1 ad-spend source">第一大投放消耗来源</span>
+          <span class="w-stat" data-en="Acquisition efficiency +100%">获新效率 +100%</span>
+          <span class="w-stat" data-en="3 research agents">3 类研究 Agent</span>
         </div>
-        <details>
-          <summary>项目故事：为什么要把 GTM 做成 Agent</summary>
-          <p style="margin-top:10px"><b>背景：</b>投放素材的生产是典型的「灵感瓶颈」——想法靠人憋、验证靠等数据、素材和产品承接两张皮。新产品孵化期尤其伤：方向探索慢、验证成本高。</p>
-          <p><b>架构关键：</b>把「热点 → 创意 → 承接 → 反馈」四个环节各自 Agent 化，用数据接口串成闭环；反馈不达标时自动带着诊断回流创意层重跑，而不是回到人的待办清单里。</p>
-          <p><b>结果：</b>系统上线验证后成为第一大投放消耗来源，获新效率相对提升 100%+，并贡献付费留存增量。</p>
+        <details open>
+          <summary data-en="Project story: why turn GTM into agents">项目故事：为什么要把 GTM 做成 Agent</summary>
+          <p style="margin-top:10px" data-en="<b>Context:</b> creative production is a classic inspiration bottleneck — ideas squeezed out of people, validation waits on data, creative and product landing live on two separate planets. It hurts most during new-product incubation."><b>背景：</b>投放素材的生产是典型的「灵感瓶颈」——想法靠人憋、验证靠等数据、素材和产品承接两张皮。新产品孵化期尤其伤：方向探索慢、验证成本高。</p>
+          <p data-en="<b>Architecture:</b> agentize each of signal → creative → landing → feedback, chained by data interfaces into a loop; failed feedback flows back to the creative layer with its diagnosis attached."><b>架构关键：</b>把「热点 → 创意 → 承接 → 反馈」四个环节各自 Agent 化，用数据接口串成闭环；反馈不达标时自动带着诊断回流创意层重跑。</p>
+          <p data-en="<b>Result:</b> after going live, the system became the #1 ad-spend source, lifted acquisition efficiency by 100%+ relative, and contributed incremental paid retention."><b>结果：</b>系统上线验证后成为第一大投放消耗来源，获新效率相对提升 100%+，并贡献付费留存增量。</p>
         </details>
+        <div class="w-note" data-en="* The console is an interactive demo with illustrative numbers; the outcome stats (#1 spend source / +100%) are real business results.">* 控制台为交互演示、数值为示意；结果数据（第一大消耗来源 / +100%）为真实业务结果。</div>
       </div>
       <div class="world-demo">
-        <span class="w-hint">Live Demo · 按下运行，看一轮完整闭环</span>
+        <span class="w-hint" data-en="Live Demo · Press run, watch one full loop">Live Demo · 按下运行，看一轮完整闭环</span>
         <div class="agc" id="agc"></div>
       </div>
     </div>
@@ -3389,7 +3474,8 @@ footer {
       '<div class="agc-loop">↺ 反馈不达标时，自动带着诊断回流创意层重跑</div>' +
       '<div class="agc-log" id="ag-log"><div class="agl">$ pipeline idle · 等待指令…</div></div>' +
       '<div class="agc-cards" id="ag-cards"></div>' +
-      '<button class="agc-run" id="ag-run">▶ 运行一轮投放闭环</button>';
+      '<button class="agc-run" id="ag-run">▶ 运行一轮投放闭环</button>' +
+      '<div class="agc-note">DEMO DATA · 控制台数值为演示示意，非真实投放数据</div>';
     document.getElementById("ag-run").addEventListener("click", agRun);
   }
   function agLog(html) {
@@ -3486,31 +3572,54 @@ footer {
      成就图鉴（翻面徽章）
      ===================================================== */
   var ACH = [
-    { e: "🏅", t: "IDEA 金奖", d: "<b>亚洲首个</b>获 IDEA 概念奖金奖的团队；另集齐红点 / K-Design / IF 四大国际奖" },
-    { e: "📜", t: "双顶会论文", d: "<b>CHI'24 + CSCW'24</b> 发表；另有 HCI 顶刊在审（R&R）" },
-    { e: "🚀", t: "纳斯达克大屏", d: "创业项目获<b>中关村推荐</b>，登上纳斯达克大屏宣传" },
-    { e: "📕", t: "曝光破亿", d: "从零搭小红书矩阵：<b>40 万粉</b> · 单月引流 1w+ · 年曝光破亿" },
-    { e: "💃", t: "服装品牌主理人", d: "ATTICUTE 舞蹈服饰：<b>意大利面料</b> + 自建供应链，从版型到上架全链路" },
-    { e: "🖼", t: "Prada 荣宅", d: "Prada 荣宅展览<b>创意设计师</b>" },
-    { e: "🐧", t: "腾讯微视", d: "「虚拟 AI 实习」全流程求职体验设计 · 创意推广峰值 <b>1w+ 人</b>" },
-    { e: "💊", t: "阿斯利康", d: "CCIC 健康创新中心体验换新 · 独立完成北美工厂 <b>VI 与 Design System</b>" },
-    { e: "🧭", t: "咨询组最强实习生", d: "慎思行战略咨询：一人扛下 <b>80% KPI</b>，全组贡献最高" },
-    { e: "🏛", t: "复星集团", d: "用 <b>271 个评估指标</b>给年度产业活动排名并输出战略复盘" },
-    { e: "🤖", t: "ORION ARM 新加坡", d: "0-1 AI 产品 Stackie · 付费用户流失率 <b>17.9% → 7.9%</b>" },
-    { e: "🇮🇹", t: "米兰满分交换", d: "米兰理工破格修研究生课程——<b>门门满分</b>" },
-    { e: "🎓", t: "Offer 收割机", d: "<b>牛津 / 帝国理工 / NUS</b> 等多校 AI × 医疗方向 offer" },
-    { e: "🧊", t: "三次创业", d: "教育（小鹅求职）· 舞蹈服饰 · 设计工作室——三家公司<b>创始人 / 核心成员</b>" }
+    { e: "🏅", t: "IDEA 金奖", d: "<b>亚洲首个</b>获 IDEA 概念奖金奖的团队；另集齐红点 / K-Design / IF 四大国际奖", et: "IDEA Gold", ed: "<b>First team in Asia</b> to win IDEA concept gold; plus Red Dot / K-Design / IF" },
+    { e: "📜", t: "双顶会论文", d: "<b>CHI'24 + CSCW'24</b> 发表；另有 HCI 顶刊在审（R&R）", et: "CHI + CSCW", ed: "Published at <b>CHI'24 + CSCW'24</b>; HCI top-journal R&amp;R in review" },
+    { e: "🚀", t: "纳斯达克大屏", d: "创业项目获<b>中关村推荐</b>，登上纳斯达克大屏宣传", et: "Nasdaq Billboard", ed: "Startup featured on the <b>Nasdaq screen</b> via Zhongguancun recommendation" },
+    { e: "📕", t: "曝光破亿", d: "从零搭小红书矩阵：<b>40 万粉</b> · 单月引流 1w+ · 年曝光破亿", et: "100M+ Impressions", ed: "Built a RED matrix from zero: <b>400k followers</b> · 10k+ monthly leads" },
+    { e: "💃", t: "服装品牌主理人", d: "ATTICUTE 舞蹈服饰：<b>意大利面料</b> + 自建供应链，从版型到上架全链路", et: "Dancewear Founder", ed: "ATTICUTE dancewear: <b>Italian fabrics</b> + own supply chain, pattern to shelf" },
+    { e: "🖼", t: "Prada 荣宅", d: "Prada 荣宅展览<b>创意设计师</b>", et: "Prada Rong Zhai", ed: "Exhibition <b>creative designer</b> at Prada Rong Zhai, Shanghai" },
+    { e: "🐧", t: "腾讯微视", d: "「虚拟 AI 实习」全流程求职体验设计 · 创意推广峰值 <b>1w+ 人</b>", et: "Tencent Weishi", ed: "Designed the end-to-end <b>virtual AI internship</b> job-prep experience" },
+    { e: "💊", t: "阿斯利康", d: "CCIC 健康创新中心体验换新 · 独立完成北美工厂 <b>VI 与 Design System</b>", et: "AstraZeneca", ed: "CCIC innovation-center revamp · solo <b>VI &amp; design system</b> for NA plants" },
+    { e: "🧭", t: "咨询组最强实习生", d: "慎思行战略咨询：一人扛下 <b>80% KPI</b>，全组贡献最高", et: "80% of Team KPI", ed: "Strategy consulting: carried <b>80% of KPI</b> solo, top contributor" },
+    { e: "🏛", t: "复星集团", d: "用 <b>271 个评估指标</b>给年度产业活动排名并输出战略复盘", et: "Fosun Group", ed: "Ranked annual industry events with <b>271 evaluation metrics</b>" },
+    { e: "🤖", t: "ORION ARM 新加坡", d: "0-1 AI 产品 Stackie · 付费用户流失率 <b>17.9% → 7.9%</b>", et: "ORION ARM SG", ed: "0-1 AI product Stackie · paid churn <b>17.9% → 7.9%</b>" },
+    { e: "🇮🇹", t: "米兰满分交换", d: "米兰理工破格修研究生课程——<b>门门满分</b>", et: "Full Marks in Milan", ed: "Grad courses at PoliMi by exception — <b>straight full marks</b>" },
+    { e: "🎓", t: "Offer 收割机", d: "<b>牛津 / 帝国理工 / NUS</b> 等多校 AI × 医疗方向 offer", et: "Offer Collector", ed: "AI × medicine offers from <b>Oxford / Imperial / NUS</b> and more" },
+    { e: "🧊", t: "三次创业", d: "教育（小鹅求职）· 舞蹈服饰 · 设计工作室——三家公司<b>创始人 / 核心成员</b>", et: "3× Founder", ed: "Ed-tech · dancewear · design studio — <b>founder / core member</b> of three" }
   ];
   var achGrid = document.getElementById("ach-grid");
-  ACH.forEach(function (a) {
-    var b = document.createElement("button");
-    b.className = "ach";
-    b.setAttribute("aria-label", a.t);
-    b.innerHTML = '<span class="ach-in"><span class="ach-f"><i>' + a.e + '</i><span>' + a.t + '</span></span>' +
-      '<span class="ach-b">' + a.d + '</span></span>';
-    b.addEventListener("click", function () { b.classList.toggle("flip"); });
-    achGrid.appendChild(b);
-  });
+  var LANG_EN = false;
+  function renderAch() {
+    achGrid.innerHTML = "";
+    ACH.forEach(function (a) {
+      var b = document.createElement("button");
+      b.className = "ach";
+      b.setAttribute("aria-label", LANG_EN ? a.et : a.t);
+      b.innerHTML = '<span class="ach-in"><span class="ach-f"><i>' + a.e + '</i><span>' + (LANG_EN ? a.et : a.t) + '</span></span>' +
+        '<span class="ach-b">' + (LANG_EN ? a.ed : a.d) + '</span></span>';
+      b.addEventListener("click", function () { b.classList.toggle("flip"); });
+      achGrid.appendChild(b);
+    });
+  }
+  renderAch();
+
+  /* =====================================================
+     中 / EN 语言切换
+     ===================================================== */
+  var langBtn = document.getElementById("lang-btn");
+  function applyLang(en) {
+    LANG_EN = en;
+    document.documentElement.lang = en ? "en" : "zh-CN";
+    document.querySelectorAll("[data-en]").forEach(function (el) {
+      if (el.dataset.zh === undefined) el.dataset.zh = el.innerHTML;
+      el.innerHTML = en ? el.dataset.en : el.dataset.zh;
+    });
+    renderAch();
+    langBtn.textContent = en ? "中" : "EN";
+    try { localStorage.setItem("pj_lang", en ? "en" : "zh"); } catch (e) {}
+  }
+  langBtn.addEventListener("click", function () { applyLang(!LANG_EN); });
+  try { if (localStorage.getItem("pj_lang") === "en") applyLang(true); } catch (e) {}
 
   /* =====================================================
      薛定谔的喵 demo（观测 → 照片 → 语聊 → 评估养成）
