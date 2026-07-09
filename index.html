@@ -8,13 +8,14 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
 <title>潘静雨 · AI 产品经理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070B10">
 <style>
 /* ============ 宇宙基底（单主题·刻意为之） ============ */
 :root {
   --bg: #070B10;
   --ink: #E9F1EC;
   --ink-soft: #A7B8B0;
-  --ink-faint: #6E8078;
+  --ink-faint: #75897F;
   --accent: #5FCBAA;
   --accent-soft: rgba(95, 203, 170, .13);
   --hairline: rgba(233, 241, 236, .12);
@@ -48,12 +49,12 @@ body {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   display: flex; align-items: center; justify-content: space-between; gap: 14px;
   padding: 11px 24px;
-  background: rgba(7, 11, 16, .74); backdrop-filter: blur(12px);
+  background: rgba(7, 11, 16, .74); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--hairline);
 }
 .tn-name { font-family: var(--serif); font-weight: 600; font-size: 15px; letter-spacing: .1em; color: var(--ink); }
 .tn-name:hover { text-decoration: none; color: var(--accent); }
-.tn-links { display: flex; align-items: center; gap: 18px; font-size: 13px; }
+.tn-links { display: flex; align-items: center; gap: 18px; font-size: 13px; letter-spacing: .04em; }
 .tn-links > a { color: var(--ink-soft); }
 .tn-links > a:hover { color: var(--accent); text-decoration: none; }
 .tn-btn { border: 1px solid var(--accent); color: var(--accent) !important; border-radius: 100px; padding: 4px 15px; }
@@ -74,7 +75,7 @@ body {
 .pstatus {
   position: absolute; top: 10px; left: 10px; z-index: 2;
   font-size: 10px; font-weight: 700; letter-spacing: .06em;
-  padding: 3px 11px; border-radius: 100px; backdrop-filter: blur(4px);
+  padding: 3px 11px; border-radius: 100px; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
 }
 .pstatus.live { background: rgba(18, 184, 118, .16); color: #7FE8C2; border: 1px solid rgba(18, 184, 118, .45); }
 .pstatus.side { background: rgba(233, 241, 236, .08); color: #B9C8C1; border: 1px solid rgba(233, 241, 236, .22); }
@@ -119,6 +120,7 @@ body {
   margin: 4px 0 14px; padding: 10px 0;
   border-top: 1px solid rgba(128, 128, 128, .28);
   border-bottom: 1px solid rgba(128, 128, 128, .28);
+  border-color: color-mix(in oklab, currentColor 24%, transparent);
 }
 .w-meta-row span { font-size: 12.5px; font-weight: 600; }
 .w-meta-row i {
@@ -130,8 +132,8 @@ body {
 
 /* 关键决策 / AI 工程 */
 .w-key {
-  border-left: 3px solid var(--accent); background: var(--accent-soft);
-  border-radius: 0 12px 12px 0; padding: 9px 13px; margin: 2px 0 12px;
+  border-left: 2px solid var(--accent); background: var(--accent-soft);
+  padding: 10px 16px; margin: 2px 0 12px;
   font-size: 13px; line-height: 1.85;
 }
 #world-ws .w-key { border-color: #E2A75E; background: rgba(226, 167, 94, .12); }
@@ -139,11 +141,32 @@ body {
 #world-pl .w-key { border-color: #8E96FF; background: rgba(142, 150, 255, .12); }
 #world-sc .w-key { border-color: #D9A6F2; background: rgba(217, 166, 242, .12); }
 .w-ai { font-size: 12.5px !important; opacity: .92; }
-.agc-note { text-align: center; font-size: 8.5px; letter-spacing: .08em; color: #4E7A6B; padding: 0 0 10px; }
+.agc-note { text-align: center; font-size: 10px; letter-spacing: .08em; color: #6FA18D; padding: 0 0 10px; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px;
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+a:not([class]):focus-visible { border-radius: 3px; }
+#world-mb a:focus-visible, #world-mb button:focus-visible { outline-color: #3B2E20; }
+::selection { background: rgba(95, 203, 170, .3); color: #F2FBF6; }
+.skip-link {
+  position: fixed; top: -52px; left: 16px; z-index: 60;
+  background: var(--accent); color: #06110D;
+  font-size: 13px; font-weight: 600; letter-spacing: .04em;
+  padding: 9px 18px; border-radius: 0 0 10px 10px;
+  transition: top .18s ease;
+}
+.skip-link:focus-visible { top: 0; outline-offset: -3px; outline-color: #06110D; }
+.page:focus { outline: none; }
+.world-scroll, .ps-body, .les-body, .agc-log, .agc-cards {
+  scrollbar-width: thin; scrollbar-color: rgba(128, 128, 128, .35) transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .skip-link { transition: none; }
+  .metric:hover, .rtag:hover, .swatch:hover { transform: none; }
+  .world-demo:hover .phone { transform: none; }
 }
 
 /* ============ 头部 ============ */
@@ -175,7 +198,7 @@ h1 {
 .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 54px; }
 .metric {
   border: 1px solid var(--hairline); border-radius: 14px; padding: 18px 16px 15px;
-  background: var(--card); backdrop-filter: blur(6px);
+  background: var(--card); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
 }
 .metric:hover { transform: translateY(-4px); border-color: rgba(95, 203, 170, .45); box-shadow: 0 18px 40px -22px rgba(95, 203, 170, .35); }
@@ -188,8 +211,8 @@ h1 {
 
 /* ============ 区块 ============ */
 section { margin-top: 110px; }
-h2 { font-family: var(--serif); font-size: 30px; font-weight: 600; letter-spacing: .06em; margin: 0 0 8px; }
-.section-note { font-size: 13.5px; color: var(--ink-faint); margin: 4px 0 0; max-width: 40em; }
+h2 { font-family: var(--serif); font-size: 30px; font-weight: 600; letter-spacing: .06em; margin: 0 0 8px; text-wrap: balance; }
+.section-note { font-size: 13.5px; color: var(--ink-faint); margin: 4px 0 0; max-width: 40em; text-wrap: pretty; }
 
 /* ============ 作品传送门 ============ */
 .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 30px 0 26px; }
@@ -207,7 +230,6 @@ h2 { font-family: var(--serif); font-size: 30px; font-weight: 600; letter-spacin
   font: inherit; color: inherit; padding: 0; display: block; width: 100%;
   border: 1px solid var(--hairline); border-radius: 18px; background: var(--card);
   transition: border-color .35s ease, box-shadow .35s ease, transform .25s ease;
-  will-change: transform;
 }
 .portal::after {
   content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
@@ -224,7 +246,7 @@ h2 { font-family: var(--serif); font-size: 30px; font-weight: 600; letter-spacin
 .portal-body { padding: 16px 20px 18px; }
 .portal-kind { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
 .portal-title { font-family: var(--serif); font-size: 19.5px; font-weight: 600; margin: 7px 0 4px; letter-spacing: .02em; }
-.portal-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; margin: 0; }
+.portal-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; margin: 0; text-wrap: pretty; }
 .portal-cta { display: inline-block; margin-top: 12px; font-size: 12.5px; color: var(--accent); letter-spacing: .04em; }
 .portal:hover .portal-cta::after { content: " →"; }
 .hide-item { display: none !important; }
@@ -238,15 +260,15 @@ h2 { font-family: var(--serif); font-size: 30px; font-weight: 600; letter-spacin
 .rline .co { font-weight: 650; font-size: 16.5px; }
 .rline .co span { font-weight: 400; font-size: 13.5px; color: var(--ink-soft); margin-left: 10px; }
 .period { font-size: 13px; color: var(--ink-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.rdesc { font-size: 14px; color: var(--ink-soft); margin: 4px 0 0; max-width: 46em; }
+.rdesc { font-size: 14px; color: var(--ink-soft); margin: 4px 0 0; max-width: 46em; text-wrap: pretty; }
 .rdesc b { color: var(--ink); font-weight: 600; }
 .rtags { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0 4px; }
 .rtag {
   font-size: 12px; padding: 3px 12px; border-radius: 100px;
-  color: var(--accent); background: var(--accent-soft);
-  transition: background .25s, transform .25s;
+  color: var(--ink-soft); background: var(--card); border: 1px solid var(--hairline);
+  transition: color .25s, border-color .25s, transform .25s;
 }
-.rtag:hover { background: rgba(95, 203, 170, .25); transform: translateY(-1px); }
+.rtag:hover { color: var(--ink); border-color: rgba(95, 203, 170, .45); transform: translateY(-1px); }
 .edu-row {
   display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
   padding: 15px 0; border-top: 1px solid var(--hairline); font-size: 14.5px;
@@ -273,9 +295,9 @@ footer {
 .world-bg { position: absolute; inset: 0; }
 .world-close {
   position: fixed; top: 20px; right: 22px; z-index: 5;
-  width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
   border: 1px solid rgba(255, 255, 255, .25); background: rgba(0, 0, 0, .3);
-  color: #fff; font-size: 17px; line-height: 1; backdrop-filter: blur(4px);
+  color: #fff; font-size: 17px; line-height: 1; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
 }
 .world-close:hover { background: rgba(0, 0, 0, .55); }
 .world-scroll { position: relative; z-index: 2; height: 100%; overflow-y: auto; padding: 56px 26px 64px; }
@@ -312,20 +334,20 @@ footer {
 #world-ws .w-stat { color: #E2A75E; background: rgba(226, 167, 94, .13); }
 #world-ws .w-link { color: #16100A; background: #E2A75E; }
 #world-ws .w-link:hover { text-decoration: none; opacity: .88; }
-#world-ws .w-hint { color: #8D7C63; }
+#world-ws .w-hint { color: #9C8B70; }
 
 /* —— ManiBeat 世界（奶油晨光） —— */
 #world-mb { background: linear-gradient(175deg, #F9F3E7 0%, #F3EAD6 60%, #EBDDC2 100%); color: #4A3B2B; }
 #world-mb .world-close { border-color: rgba(74, 59, 43, .3); background: rgba(255, 255, 255, .5); color: #4A3B2B; }
 #world-mb .world-close:hover { background: rgba(255, 255, 255, .85); }
-#world-mb .w-eyebrow, #world-mb .w-sub { color: #B98F6B; }
+#world-mb .w-eyebrow, #world-mb .w-sub { color: #82633E; }
 #world-mb .w-title { color: #4A3323; font-style: italic; font-family: Palatino, "Palatino Linotype", Georgia, var(--serif); }
 #world-mb .world-copy p { color: #7A6B54; }
 #world-mb .world-copy p b, #world-mb .world-copy summary { color: #4A3B2B; }
 #world-mb .w-stat { color: #8A6B45; background: rgba(185, 143, 107, .16); }
 #world-mb .w-link { color: #F5EDDC; background: #3B2E20; }
 #world-mb .w-link:hover { text-decoration: none; opacity: .9; }
-#world-mb .w-hint { color: #A2937D; }
+#world-mb .w-hint { color: #7A6B54; }
 
 /* —— 占位世界（星尘） —— */
 #world-x { background: linear-gradient(170deg, #0A1016, #0D141C); color: var(--ink); }
@@ -649,8 +671,8 @@ footer {
 #world-pl .world-copy p { color: #A9AFD6; }
 #world-pl .world-copy p b, #world-pl .world-copy summary { color: #E7EAFB; }
 #world-pl .w-stat { color: #A3AAFF; background: rgba(142, 150, 255, .15); }
-#world-pl .w-hint { color: #6D74A8; }
-#world-pl .w-note { font-size: 11px; color: #6D74A8; margin-top: 12px; }
+#world-pl .w-hint { color: #858DC7; }
+#world-pl .w-note { font-size: 11px; color: #858DC7; margin-top: 12px; }
 
 /* —— Polaris 手机（langflix 风：浅灰底 · 白卡 · 橙主色 · 大黑标题） —— */
 .phone.pl {
@@ -903,8 +925,8 @@ footer {
 #world-sc .world-copy p { color: #BBA9D6; }
 #world-sc .world-copy p b, #world-sc .world-copy summary { color: #F2EAFB; }
 #world-sc .w-stat { color: #D9A6F2; background: rgba(217, 166, 242, .14); }
-#world-sc .w-hint { color: #8E7BAB; }
-#world-sc .w-note { font-size: 11px; color: #8E7BAB; margin-top: 12px; }
+#world-sc .w-hint { color: #A08FC0; }
+#world-sc .w-note { font-size: 11px; color: #A08FC0; margin-top: 12px; }
 
 /* —— 薛定谔的喵 手机（夜色紫 · 复用 token 组件） —— */
 .phone.sc {
@@ -1004,7 +1026,7 @@ footer {
   .agc-top .dot { animation: agdot 1.6s ease-in-out infinite; }
   @keyframes agdot { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 }
-.agc-ver { margin-left: auto; color: #4E7A6B; letter-spacing: .06em; }
+.agc-ver { margin-left: auto; color: #6FA18D; letter-spacing: .06em; }
 .agc-nodes { display: flex; align-items: flex-start; padding: 13px 12px 4px; }
 .agn { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 54px; flex-shrink: 0; }
 .agn i {
@@ -1027,7 +1049,7 @@ footer {
   .agk.act::after { animation: agpk 1s linear infinite; }
   @keyframes agpk { from { left: 0; } to { left: calc(100% - 6px); } }
 }
-.agc-loop { text-align: center; font-size: 8.5px; letter-spacing: .1em; color: #4E7A6B; padding: 2px 0 8px; }
+.agc-loop { text-align: center; font-size: 9.5px; letter-spacing: .1em; color: #6FA18D; padding: 2px 0 8px; }
 .agc-log {
   height: 108px; overflow-y: auto; padding: 8px 14px;
   border-top: 1px solid #17342C; border-bottom: 1px solid #17342C;
@@ -1106,7 +1128,9 @@ footer {
 
 <canvas id="stars" aria-hidden="true"></canvas>
 
-<nav class="topnav">
+<a class="skip-link" href="#main" data-en="Skip to content">跳过导航</a>
+
+<nav class="topnav" data-od-id="top-nav">
   <a class="tn-name" href="#">潘静雨</a>
   <div class="tn-links">
     <a href="#works-section" data-en="Works">作品</a>
@@ -1118,9 +1142,9 @@ footer {
   </div>
 </nav>
 
-<div class="page">
+<div class="page" id="main" tabindex="-1">
 
-<header class="reveal in">
+<header class="reveal in" data-od-id="hero">
   <p class="eyebrow">Jingyu Pan · Product Universe</p>
   <div class="name-row">
     <h1>潘静雨</h1>
@@ -1145,14 +1169,14 @@ footer {
   </div>
 </header>
 
-<section class="reveal" id="works-section">
+<section class="reveal" id="works-section" data-od-id="works-section">
   <p class="eyebrow">Selected Works</p>
   <h2 data-en="Constellation of Works">作品星图</h2>
   <p class="section-note" data-en="Each card is a portal — step in and the background, sound and interactions become that product&#39;s world. The phones and the machine room are all fully operable.">每张卡片是一扇传送门——点进去，背景、声音与交互都会变成那个作品的世界。手机和机房，都可以真实操作。</p>
 
   <div class="works-grid" id="works-grid">
     <div class="tier-label" data-en="Shipped &amp; Validated · Real business results">已上架 &amp; 已验证 · 有真实业务结果</div>
-    <button class="portal hero" data-world="ws" data-kind="产品" aria-haspopup="dialog">
+    <button class="portal hero" data-world="ws" data-od-id="portal-woodsense" data-kind="产品" aria-haspopup="dialog">
       <span class="pstatus live" data-en="LIVE · 4.7★ Both stores">已上架 · 4.7★ 双端</span>
       <canvas class="portal-art" id="art-ws" width="640" height="460" aria-hidden="true"></canvas>
       <div class="portal-body">
@@ -1167,7 +1191,7 @@ footer {
         <span class="portal-cta" data-en="Enter the wood world — full playable demo">进入木质世界 · 完整可玩 demo</span>
       </div>
     </button>
-    <button class="portal big" data-world="mb" data-kind="产品" aria-haspopup="dialog">
+    <button class="portal big" data-world="mb" data-od-id="portal-manibeat" data-kind="产品" aria-haspopup="dialog">
       <span class="pstatus live" data-en="LIVE · App Store">已上架 · App Store</span>
       <canvas class="portal-art" id="art-mb" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
@@ -1177,7 +1201,7 @@ footer {
         <span class="portal-cta" data-en="Enter the manifest world">进入显化世界</span>
       </div>
     </button>
-    <button class="portal big" data-world="ag" data-kind="系统" aria-haspopup="dialog">
+    <button class="portal big" data-world="ag" data-od-id="portal-agent-engine" data-kind="系统" aria-haspopup="dialog">
       <span class="pstatus internal" data-en="INTERNAL SYSTEM · Validated">内部系统 · 已上线验证</span>
       <canvas class="portal-art" id="art-ag" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
@@ -1188,7 +1212,7 @@ footer {
       </div>
     </button>
     <div class="tier-label" data-en="Explorations · In-role concept (desensitized) &amp; personal experiments">探索 & 孵化 · 在职脱敏概念与个人实验</div>
-    <button class="portal big" data-world="pl" data-kind="产品" aria-haspopup="dialog">
+    <button class="portal big" data-world="pl" data-od-id="portal-polaris" data-kind="产品" aria-haspopup="dialog">
       <span class="pstatus internal" data-en="IN-ROLE · Desensitized concept">在职孵化 · 概念脱敏</span>
       <canvas class="portal-art" id="art-pl" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
@@ -1198,7 +1222,7 @@ footer {
         <span class="portal-cta" data-en="Enter the star map">进入知识星图</span>
       </div>
     </button>
-    <button class="portal big" data-world="sc" data-kind="产品" aria-haspopup="dialog">
+    <button class="portal big" data-world="sc" data-od-id="portal-meow" data-kind="产品" aria-haspopup="dialog">
       <span class="pstatus side" data-en="SIDE PROJECT · Unreleased">个人开发 · 未上架</span>
       <canvas class="portal-art" id="art-sc" width="640" height="320" aria-hidden="true"></canvas>
       <div class="portal-body">
@@ -1211,7 +1235,7 @@ footer {
   </div>
 </section>
 
-<section class="reveal" id="exp-section">
+<section class="reveal" id="exp-section" data-od-id="experience-section">
   <p class="eyebrow">Experience</p>
   <h2 data-en="Experience">经历速览</h2>
 
@@ -1239,7 +1263,7 @@ footer {
   <p class="rdesc" data-en="Core member of an ed-tech startup (growth and product loop 0→1); HCI / Assistive Tech research with publications (CHI / CSCW).">教育方向创业核心成员（增长与产品闭环 0→1）；HCI / Assistive Tech 研究与论文产出（CHI / CSCW 相关）。</p>
 </section>
 
-<section class="reveal">
+<section class="reveal" data-od-id="education-section">
   <p class="eyebrow">Education & Honors</p>
   <h2 data-en="Education &amp; Honors">教育与荣誉</h2>
   <div class="edu-row">
@@ -1260,14 +1284,14 @@ footer {
   </div>
 </section>
 
-<section class="reveal" id="ach-section">
+<section class="reveal" id="ach-section" data-od-id="achievements-section">
   <p class="eyebrow">Side Quests</p>
   <h2 data-en="Achievements">成就图鉴</h2>
   <p class="section-note" data-en="XP earned off the main quest line — click a badge to flip it.">主线之外攒下的经验值——点击徽章翻面。</p>
   <div class="ach-grid" id="ach-grid"></div>
 </section>
 
-<footer>
+<footer data-od-id="footer">
   <span>潘静雨 · AI Product Manager</span>
   <a href="mailto:jingyupan0@gmail.com">jingyupan0@gmail.com</a>
 </footer>
